@@ -2,35 +2,25 @@ package com.github.harmittaa.touchobserver
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import com.github.harmittaa.touchobserver.databinding.SwipeFragmentBinding
 import kotlinx.android.synthetic.main.swipe_fragment.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class SwipeFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = SwipeFragment()
-    }
-
-    private lateinit var viewModel: SwipeViewModel
+    private val viewModel: SwipeViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.swipe_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SwipeViewModel::class.java)
-
-        historyButton.setOnClickListener {
+        val binding = SwipeFragmentBinding.inflate(inflater, container, false).apply {
+            viewModel = this@SwipeFragment.viewModel
+            lifecycleOwner = this@SwipeFragment.viewLifecycleOwner
         }
+        return binding.root
     }
-
 }
