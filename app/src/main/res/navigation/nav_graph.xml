@@ -10,5 +10,15 @@
         android:id="@+id/swipeFragment"
         android:name="com.github.harmittaa.touchobserver.SwipeFragment"
         android:label="swipe_fragment"
-        tools:layout="@layout/swipe_fragment" />
+        tools:layout="@layout/swipe_fragment" >
+        <action
+            android:id="@+id/action_swipeFragment_to_swipeUpDownFragment"
+            app:destination="@id/swipeUpDownFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/swipeUpDownFragment"
+        android:name="com.github.harmittaa.touchobserver.SwipeUpDownFragment"
+        android:label="fragment_swipe_up_down"
+        tools:layout="@layout/fragment_swipe_up_down" />
 </navigation>
