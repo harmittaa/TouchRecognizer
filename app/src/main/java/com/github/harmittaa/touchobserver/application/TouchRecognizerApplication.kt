@@ -1,6 +1,7 @@
-package com.github.harmittaa.touchobserver
+package com.github.harmittaa.touchobserver.application
 
 import android.app.Application
+import com.github.harmittaa.touchobserver.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber

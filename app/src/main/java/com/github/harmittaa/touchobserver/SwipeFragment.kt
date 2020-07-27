@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.github.harmittaa.touchobserver.databinding.SwipeFragmentBinding
-import kotlinx.android.synthetic.main.swipe_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

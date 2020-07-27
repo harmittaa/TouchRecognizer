@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/swipeUpDownFragment"
-        android:name="com.github.harmittaa.touchobserver.SwipeUpDownFragment"
+        android:name="com.github.harmittaa.touchobserver.webview.WebViewFragment"
         android:label="fragment_swipe_up_down"
-        tools:layout="@layout/fragment_swipe_up_down" />
+        tools:layout="@layout/fragment_webview" />
 </navigation>
