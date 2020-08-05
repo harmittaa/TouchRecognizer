@@ -3,7 +3,7 @@ package com.github.harmittaa.touchobserver.logic
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import androidx.lifecycle.ViewModel
-import com.github.harmittaa.touchobserver.SingleEvent
+import com.github.harmittaa.touchobserver.model.SingleEvent
 import timber.log.Timber
 
 class TouchRegisterViewModel : ViewModel() {

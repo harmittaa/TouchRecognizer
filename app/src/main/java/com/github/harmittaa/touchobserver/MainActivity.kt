@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.VelocityTracker
+import com.github.harmittaa.touchobserver.model.SingleEvent
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -39,17 +40,17 @@ class MainActivity : AppCompatActivity() {
                 gestureList.add(constructEvent(event, size = event.size, time = event.eventTime))
             }
             MotionEvent.ACTION_MOVE -> {
-                Timber.d("POSITION: X ${event.x} Y ${event.y}")
                 mVelocityTracker?.apply {
                     val pointerId: Int = event.getPointerId(event.actionIndex)
                     addMovement(event)
-                    computeCurrentVelocity(1000)
+                    computeCurrentVelocity(100)
                     gestureList.add(
                         constructEvent(
                             event = event,
                             size = event.size,
-                            xVelocity = getXVelocity(pointerId),
-                            yVelocity = getYVelocity(pointerId)
+                            xVelocityPx100Ms = getXVelocity(pointerId),
+                            yVelocityPx100Ms = getYVelocity(pointerId),
+                            time = event.eventTime
                         )
                     )
                 }
@@ -75,15 +76,15 @@ class MainActivity : AppCompatActivity() {
     private fun constructEvent(
         event: MotionEvent,
         size: Float,
-        xVelocity: Float = 0f,
-        yVelocity: Float = 0f,
-        time: Long = 0
+        xVelocityPx100Ms: Float = 0f,
+        yVelocityPx100Ms: Float = 0f,
+        time: Long
     ) =
         SingleEvent(
             xPos = event.rawX,
             yPos = event.rawY,
-            xVelocity = xVelocity,
-            yVelocity = yVelocity,
+            xVelocity = xVelocityPx100Ms,
+            yVelocity = yVelocityPx100Ms,
             size = size,
             time = time
         )
