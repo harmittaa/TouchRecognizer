@@ -1,6 +1,7 @@
 package com.github.harmittaa.touchobserver.di
 
-import com.github.harmittaa.touchobserver.SwipeViewModel
+import com.github.harmittaa.touchobserver.logic.GestureProcessor
+import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
 import com.github.harmittaa.touchobserver.remote.AuthProvider
 import com.github.harmittaa.touchobserver.remote.AuthProviderImpl
 import com.github.harmittaa.touchobserver.repository.TouchRepository
@@ -9,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    factory { SwipeViewModel(get()) }
+    factory { SwipeViewModel(get(), get()) }
 }
 
 val firebaseModule = module {
@@ -23,4 +24,8 @@ val authModule = module {
 
 val repositoryModule = module {
     factory { TouchRepository(auth = get(), firebaseDatabase = get()) }
+}
+
+val logicModule = module {
+    factory { GestureProcessor() }
 }

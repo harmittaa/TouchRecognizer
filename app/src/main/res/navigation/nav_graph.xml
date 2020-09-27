@@ -8,17 +8,21 @@
 
     <fragment
         android:id="@+id/swipeFragment"
-        android:name="com.github.harmittaa.touchobserver.SwipeFragment"
+        android:name="com.github.harmittaa.touchobserver.screens.swipe.SwipeFragment"
         android:label="swipe_fragment"
         tools:layout="@layout/swipe_fragment" >
         <action
-            android:id="@+id/action_swipeFragment_to_swipeUpDownFragment"
-            app:destination="@id/swipeUpDownFragment" />
+            android:id="@+id/action_swipeFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/swipeUpDownFragment"
-        android:name="com.github.harmittaa.touchobserver.webview.WebViewFragment"
+        android:name="com.github.harmittaa.touchobserver.screens.webview.WebViewFragment"
         android:label="fragment_swipe_up_down"
         tools:layout="@layout/fragment_webview" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.github.harmittaa.touchobserver.game.GameFragment"
+        android:label="GameFragment" />
 </navigation>

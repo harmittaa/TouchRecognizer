@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import com.github.harmittaa.touchobserver.model.SingleEvent
+import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -21,10 +22,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
+    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
         if (!storeEvents) {
             return true
         }
+        if (event == null) return true
 
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 allGestures.add(gestureList)
             }
         }
-        return true
+        return super.dispatchTouchEvent(event)
     }
 
     private fun constructEvent(
@@ -88,5 +90,9 @@ class MainActivity : AppCompatActivity() {
             size = size,
             time = time
         )
+
+    fun itShouldWork() {
+        Timber.d("WELP")
+    }
 }
 

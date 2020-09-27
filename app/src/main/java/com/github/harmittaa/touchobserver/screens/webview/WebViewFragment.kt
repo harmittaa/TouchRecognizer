@@ -1,4 +1,4 @@
-package com.github.harmittaa.touchobserver.webview
+package com.github.harmittaa.touchobserver.screens.webview
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import com.github.harmittaa.touchobserver.databinding.FragmentWebviewBinding
-import com.github.harmittaa.touchobserver.logic.TouchRegisterViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WebViewFragment : Fragment(), TouchWebView.Listener {

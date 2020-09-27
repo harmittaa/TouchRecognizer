@@ -1,4 +1,4 @@
-package com.github.harmittaa.touchobserver.logic
+package com.github.harmittaa.touchobserver.screens.webview
 
 import android.view.MotionEvent
 import android.view.VelocityTracker
