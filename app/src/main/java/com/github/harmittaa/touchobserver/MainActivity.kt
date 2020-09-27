@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.VelocityTracker
+import androidx.navigation.findNavController
 import com.github.harmittaa.touchobserver.model.SingleEvent
 import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -14,19 +15,17 @@ class MainActivity : AppCompatActivity() {
     private var gestureList = mutableListOf<SingleEvent>()
     private val allGestures = mutableListOf<List<SingleEvent>>()
     private var mVelocityTracker: VelocityTracker? = null
-    private var storeEvents = true
+    var storeEvents = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
-
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
-        if (!storeEvents) {
-            return true
+        if (!storeEvents || event == null) {
+            return super.dispatchTouchEvent(event)
         }
-        if (event == null) return true
 
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
@@ -90,9 +89,5 @@ class MainActivity : AppCompatActivity() {
             size = size,
             time = time
         )
-
-    fun itShouldWork() {
-        Timber.d("WELP")
-    }
 }
 

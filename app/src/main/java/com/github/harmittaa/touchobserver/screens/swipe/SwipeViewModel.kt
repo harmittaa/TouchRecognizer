@@ -33,16 +33,6 @@ class SwipeViewModel(
         gestureProcessor.validateGesture(gestureList)?.let { validGesture ->
             repository.storeGesture(validGesture)
         }
-
-/*
-        Timber.d("STORING ${allGestures.count()} items")
-        if (allGestures.count() >= SWIPE_REQUIRED_COUNT) {
-            canContinue.value = true
-            repository.storeSwipes(GestureDirection.DOWN_UP, allGestures.toList())
-            allGestures.clear()
-            uploadData()
-        }
-*/
     }
 
     private fun uploadData() {

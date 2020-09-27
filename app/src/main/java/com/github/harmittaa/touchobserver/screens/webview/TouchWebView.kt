@@ -20,7 +20,7 @@ class TouchWebView @JvmOverloads constructor(
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         val event = ev
-        Timber.d("EVENT: $event")
+        //Timber.d("EVENT: $event")
         if (ev != null) {
             listener?.onTouchEvent(ev)
         }

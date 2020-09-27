@@ -1,33 +1,46 @@
 package com.github.harmittaa.touchobserver.remote
 
+import com.github.harmittaa.touchobserver.repository.Resource
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.tasks.await
 import timber.log.Timber
+import java.lang.Exception
 
 interface AuthProvider {
     var userId: String?
+    suspend fun attemptSignIn() : Resource
 }
 
 class AuthProviderImpl(private val firebaseAuth: FirebaseAuth) : AuthProvider {
     override var userId: String? = null
 
-    init {
-        if (firebaseAuth.currentUser != null) {
-            userId = firebaseAuth.currentUser?.uid
+    override suspend fun attemptSignIn() : Resource {
+        val user = firebaseAuth.currentUser
+        return if (user != null) {
+            userId = user.uid
+            Resource.Success
         } else {
-            signInUserAuth()
+            val result = signInUserAuth()
+            if (result.first) {
+                userId = result.second
+                Resource.Success
+            } else {
+                Resource.Failure(reason = result.second)
+            }
         }
     }
 
-    private fun signInUserAuth() {
-        firebaseAuth.signInAnonymously().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                firebaseAuth.currentUser?.let {
-                    userId = it.uid
-                }
+    private suspend fun signInUserAuth() : Pair<Boolean, String> {
+        return try {
+            val result = firebaseAuth.signInAnonymously().await()
+            val user = result.user
+            return if (user != null) {
+                Pair(true, user.uid)
             } else {
-                Timber.d("ALWAYS SOMETHING")
-                // TODO unfuck
+                Pair(false, "User is null, please try again")
             }
+        } catch (e: Exception) {
+            Pair(false, "Could not create anonymous user ${e.localizedMessage}")
         }
     }
 }

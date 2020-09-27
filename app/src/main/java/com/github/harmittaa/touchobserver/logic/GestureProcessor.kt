@@ -18,10 +18,10 @@ class GestureProcessor {
 
         return if (verticalChange > horizontalChange) {
             when {
-                start.yPos > end.yPos -> {
+                start.yPos < end.yPos -> {
                     GestureDirection.UP_DOWN
                 }
-                start.yPos < end.yPos -> {
+                start.yPos > end.yPos -> {
                     GestureDirection.DOWN_UP
                 }
                 else -> {
@@ -80,10 +80,12 @@ class GestureProcessor {
             val timeDiff = event.time - prevEvent.time
 
             if (event.yVelocity == 0f || event.xVelocity == 0f || timeDiff == 0L) {
+/*
                 Timber.d(
                     "Velocity is 0 or time diff is 0. TimeDiff: $timeDiff," +
                             "event vel: ${event.yVelocity} prev vel: ${prevEvent.yVelocity} this is event $x"
                 )
+*/
                 continue
             }
 

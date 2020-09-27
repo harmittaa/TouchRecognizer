@@ -1,5 +1,6 @@
 package com.github.harmittaa.touchobserver.game
 
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
@@ -23,9 +24,13 @@ import java.util.*
 
 class GameFragment : Fragment(), TouchWebView.Listener {
     private lateinit var binding: ScreenGameBinding
-    private val viewModel: SwipeViewModel by sharedViewModel()
 
-
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as? MainActivity)?.let {
+            it.storeEvents = true
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
