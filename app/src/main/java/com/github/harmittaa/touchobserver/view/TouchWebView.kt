@@ -1,4 +1,4 @@
-package com.github.harmittaa.touchobserver.screens.webview
+package com.github.harmittaa.touchobserver.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -19,13 +19,10 @@ class TouchWebView @JvmOverloads constructor(
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        val event = ev
-        //Timber.d("EVENT: $event")
         if (ev != null) {
             listener?.onTouchEvent(ev)
         }
         return true
-        //return super.onInterceptTouchEvent(ev)
     }
 
     interface Listener {

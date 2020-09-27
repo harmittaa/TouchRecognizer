@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.github.harmittaa.touchobserver.R
 import com.github.harmittaa.touchobserver.databinding.SwipeFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -24,7 +22,6 @@ class SwipeFragment : Fragment() {
         }
 
         binding.swipeLayoutNextDestinationButton.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_swipeFragment_to_gameFragment)
         }
 
         return binding.root

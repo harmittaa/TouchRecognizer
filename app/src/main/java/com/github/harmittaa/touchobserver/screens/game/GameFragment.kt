@@ -1,25 +1,14 @@
-package com.github.harmittaa.touchobserver.game
+package com.github.harmittaa.touchobserver.screens.game
 
 import android.content.Context
-import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.provider.Settings
-import android.provider.Settings.SettingNotFoundException
-import android.util.Log
 import android.view.*
-import android.view.View.OnTouchListener
 import android.webkit.WebSettings
 import android.webkit.WebSettings.RenderPriority
-import android.webkit.WebView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.harmittaa.touchobserver.MainActivity
 import com.github.harmittaa.touchobserver.databinding.ScreenGameBinding
-import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
-import com.github.harmittaa.touchobserver.screens.webview.TouchWebView
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import com.github.harmittaa.touchobserver.view.TouchWebView
 import java.util.*
 
 class GameFragment : Fragment(), TouchWebView.Listener {

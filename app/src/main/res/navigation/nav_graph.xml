@@ -5,26 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/onboardingFragment">
 
-
-    <fragment
-        android:id="@+id/swipeFragment"
-        android:name="com.github.harmittaa.touchobserver.screens.swipe.SwipeFragment"
-        android:label="swipe_fragment"
-        tools:layout="@layout/swipe_fragment">
-        <action
-            android:id="@+id/action_swipeFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/swipeUpDownFragment"
-        android:name="com.github.harmittaa.touchobserver.screens.webview.WebViewFragment"
-        android:label="fragment_swipe_up_down"
-        tools:layout="@layout/fragment_webview" />
-    <fragment
-        android:id="@+id/gameFragment"
-        android:name="com.github.harmittaa.touchobserver.game.GameFragment"
-        android:label="GameFragment" />
     <fragment
         android:id="@+id/onboardingFragment"
         android:name="com.github.harmittaa.touchobserver.screens.onboarding.OnboardingFragment"
@@ -32,6 +12,13 @@
         <action
             android:id="@+id/action_onboardingFragment_to_gameFragment"
             app:destination="@id/gameFragment"
-            app:popUpToInclusive="true" />
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"
+            />
     </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.github.harmittaa.touchobserver.screens.game.GameFragment"
+        android:label="GameFragment" />
 </navigation>

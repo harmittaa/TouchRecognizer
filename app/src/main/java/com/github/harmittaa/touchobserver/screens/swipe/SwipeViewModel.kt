@@ -34,8 +34,4 @@ class SwipeViewModel(
             repository.storeGesture(validGesture)
         }
     }
-
-    private fun uploadData() {
-        repository.storeSwipes(GestureDirection.DOWN_UP, allGestures)
-    }
 }

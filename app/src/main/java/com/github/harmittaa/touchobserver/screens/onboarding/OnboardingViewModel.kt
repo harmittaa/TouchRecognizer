@@ -17,11 +17,21 @@ class OnboardingViewModel(
     val initResult: LiveData<Resource.Failure> = _initResult
     private val _showNextScreen = MutableLiveData(false)
     val showNextScreen: LiveData<Boolean> = _showNextScreen
+    private val _canSkipLogin = MutableLiveData(false)
+    val canSkipLogin: LiveData<Boolean> = _canSkipLogin
+
+    init {
+        viewModelScope.launch {
+            val consent = userRepository.hasGivenConsent()
+            val userReady = userRepository.userReady()
+            _canSkipLogin.value = consent && userReady
+        }
+    }
 
     fun onConsentGiven() {
         _showLoading.value = true
         viewModelScope.launch {
-            when(val signInResult = userRepository.attemptSignIn()) {
+            when (val signInResult = userRepository.attemptSignIn()) {
                 is Resource.Success -> instantiateUserData()
                 is Resource.Failure -> {
                     _showLoading.value = false
@@ -32,15 +42,12 @@ class OnboardingViewModel(
     }
 
     private suspend fun instantiateUserData() {
-        val result = userRepository.instantiateData()
-        when (result) {
-            is Resource.Success -> _showNextScreen.value = true
+        when (val result = userRepository.instantiateData()) {
+            is Resource.Success -> _showNextScreen.postValue(true)
             is Resource.Failure -> {
-                _initResult.value = result
+                _initResult.postValue(result)
             }
         }
 
     }
-
-
 }

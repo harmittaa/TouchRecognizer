@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.VelocityTracker
-import androidx.navigation.findNavController
 import com.github.harmittaa.touchobserver.model.SingleEvent
 import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel

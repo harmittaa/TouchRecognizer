@@ -3,18 +3,18 @@ package com.github.harmittaa.touchobserver.remote
 import com.github.harmittaa.touchobserver.repository.Resource
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
-import timber.log.Timber
 import java.lang.Exception
 
 interface AuthProvider {
     var userId: String?
-    suspend fun attemptSignIn() : Resource
+    suspend fun attemptSignIn(): Resource
+    fun isFirebaseUserAvailable(): Boolean
 }
 
 class AuthProviderImpl(private val firebaseAuth: FirebaseAuth) : AuthProvider {
     override var userId: String? = null
 
-    override suspend fun attemptSignIn() : Resource {
+    override suspend fun attemptSignIn(): Resource {
         val user = firebaseAuth.currentUser
         return if (user != null) {
             userId = user.uid
@@ -30,7 +30,12 @@ class AuthProviderImpl(private val firebaseAuth: FirebaseAuth) : AuthProvider {
         }
     }
 
-    private suspend fun signInUserAuth() : Pair<Boolean, String> {
+    override fun isFirebaseUserAvailable(): Boolean {
+        userId = firebaseAuth.currentUser?.uid
+        return userId != null
+    }
+
+    private suspend fun signInUserAuth(): Pair<Boolean, String> {
         return try {
             val result = firebaseAuth.signInAnonymously().await()
             val user = result.user

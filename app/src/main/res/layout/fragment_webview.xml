@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark">
 
-        <com.github.harmittaa.touchobserver.screens.webview.TouchWebView
+        <com.github.harmittaa.touchobserver.view.TouchWebView
             android:id="@+id/webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

@@ -1,6 +1,5 @@
 package com.github.harmittaa.touchobserver.screens.onboarding
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import com.github.harmittaa.touchobserver.MainActivity
 import com.github.harmittaa.touchobserver.R
 import com.github.harmittaa.touchobserver.databinding.ScreenOnboardingBinding
-import com.github.harmittaa.touchobserver.repository.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.ext.getOrCreateScope
 
 class OnboardingFragment : Fragment() {
     private lateinit var binding: ScreenOnboardingBinding
@@ -37,13 +35,17 @@ class OnboardingFragment : Fragment() {
         binding.consentButton.setOnClickListener {
             viewModel.onConsentGiven()
         }
-
         bindViewModel()
-
         return binding.root
     }
 
     private fun bindViewModel() {
+        viewModel.canSkipLogin.observe(viewLifecycleOwner) { resource ->
+            if (resource) {
+                navigateOnwards()
+            }
+        }
+
         viewModel.initResult.observe(viewLifecycleOwner) { resource ->
             Toast.makeText(requireContext(), "Problems ${resource.reason}", Toast.LENGTH_SHORT)
                 .show()
@@ -51,16 +53,23 @@ class OnboardingFragment : Fragment() {
 
         viewModel.showNextScreen.observe(viewLifecycleOwner) { shouldShow ->
             if (shouldShow) {
-                view?.findNavController()?.navigate(R.id.action_onboardingFragment_to_gameFragment)
+                navigateOnwards()
             }
         }
 
         viewModel.showLoading.observe(viewLifecycleOwner) { loading ->
             if (loading) {
+                binding.consentButton.isEnabled = false
                 binding.onboardingLoadingIndicator.visibility = View.VISIBLE
             } else {
                 binding.onboardingLoadingIndicator.visibility = View.GONE
+                binding.consentButton.isEnabled = true
             }
         }
+    }
+
+    private fun navigateOnwards() {
+        view?.findNavController()
+            ?.navigate(OnboardingFragmentDirections.actionOnboardingFragmentToGameFragment())
     }
 }

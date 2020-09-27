@@ -13,7 +13,16 @@ class TouchRecognizerApplication : Application() {
         Timber.plant(Timber.DebugTree())
         startKoin {
             androidContext(this@TouchRecognizerApplication)
-            modules(listOf(viewModelModule, authModule, firebaseModule, repositoryModule, logicModule))
+            modules(
+                listOf(
+                    viewModelModule,
+                    authModule,
+                    firebaseModule,
+                    repositoryModule,
+                    logicModule,
+                    dataStoreModule
+                )
+            )
         }
 
     }
