@@ -3,9 +3,9 @@ package com.github.harmittaa.touchobserver.logic
 import com.github.harmittaa.touchobserver.model.SingleEvent
 import com.github.harmittaa.touchobserver.model.TouchGesture
 import com.github.harmittaa.touchobserver.screens.swipe.GestureDirection
-import timber.log.Timber
 import kotlin.math.atan
 import kotlin.math.withSign
+import timber.log.Timber
 
 class GestureProcessor {
 
@@ -105,7 +105,6 @@ class GestureProcessor {
         // calculate swipe curvature
 
         val curvature = calculateCurvature(startPoint, endPoint, direction)
-
 
         val touchGesture = TouchGesture(
             gestureDirection = direction,

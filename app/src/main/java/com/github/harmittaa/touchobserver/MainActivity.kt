@@ -1,13 +1,12 @@
 package com.github.harmittaa.touchobserver
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.VelocityTracker
+import androidx.appcompat.app.AppCompatActivity
 import com.github.harmittaa.touchobserver.model.SingleEvent
 import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val swipeViewModel: SwipeViewModel by viewModel()
@@ -89,4 +88,3 @@ class MainActivity : AppCompatActivity() {
             time = time
         )
 }
-

@@ -2,10 +2,10 @@ package com.github.harmittaa.touchobserver.repository
 
 import com.github.harmittaa.touchobserver.model.TouchGesture
 import com.github.harmittaa.touchobserver.remote.AuthProvider
-import com.github.harmittaa.touchobserver.screens.swipe.GestureDirection
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseException
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import timber.log.Timber
-
 
 class TouchRepository(val auth: AuthProvider, val firebaseDatabase: FirebaseDatabase) {
 

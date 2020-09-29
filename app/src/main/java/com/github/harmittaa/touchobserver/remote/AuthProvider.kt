@@ -2,8 +2,8 @@ package com.github.harmittaa.touchobserver.remote
 
 import com.github.harmittaa.touchobserver.repository.Resource
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.tasks.await
 import java.lang.Exception
+import kotlinx.coroutines.tasks.await
 
 interface AuthProvider {
     var userId: String?

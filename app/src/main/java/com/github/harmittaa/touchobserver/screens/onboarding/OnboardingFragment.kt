@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import com.github.harmittaa.touchobserver.MainActivity
-import com.github.harmittaa.touchobserver.R
 import com.github.harmittaa.touchobserver.databinding.ScreenOnboardingBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

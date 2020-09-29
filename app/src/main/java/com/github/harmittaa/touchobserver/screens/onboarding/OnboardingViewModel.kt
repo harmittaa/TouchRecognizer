@@ -48,6 +48,5 @@ class OnboardingViewModel(
                 _initResult.postValue(result)
             }
         }
-
     }
 }
