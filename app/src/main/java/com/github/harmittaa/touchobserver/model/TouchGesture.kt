@@ -12,7 +12,7 @@ data class TouchGesture(
     val euclideanDistance: Float = 0f,
     val durationMs: Long = 0,
     val maxVelocityPx100ms: Float = 0f,
-    val avgVelocityPx100mx: Double = 0.0,
+    val avgVelocityPx100ms: Double = 0.0,
     val yMaxAcceleration: Float = 0f,
     val xMaxAcceleration: Float = 0f,
     val swipeCurvature: Float = 0f

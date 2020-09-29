@@ -114,7 +114,7 @@ class GestureProcessor {
             euclideanDistance = totalDistancePx,
             durationMs = durationMs,
             maxVelocityPx100ms = maxVelocityPx100ms,
-            avgVelocityPx100mx = averageVelocityPx100ms,
+            avgVelocityPx100ms = averageVelocityPx100ms,
             yMaxAcceleration = yAccelerationPixelsPer100ms,
             xMaxAcceleration = xAccelerationPixelsPer100ms,
             swipeCurvature = curvature
