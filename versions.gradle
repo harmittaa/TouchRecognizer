@@ -21,6 +21,7 @@ versions.coroutines_play = "1.1.1"
 versions.spinkit = "1.4.0"
 versions.datastore = "1.0.0-alpha01"
 versions.viewpager = "1.0.0"
+versions.material = "1.2.1"
 
 
 
@@ -39,6 +40,10 @@ androidx.navigation_ui          = "androidx.navigation:navigation-ui-ktx:$versio
 androidx.datastore              = "androidx.datastore:datastore-preferences:$versions.datastore"
 androidx.viewpager              = "androidx.viewpager2:viewpager2:$versions.viewpager"
 deps.androidx = androidx
+
+def material = [:]
+material.material               = "com.google.android.material:material:$versions.material"
+deps.material = material
 
 def firebase = [:]
 firebase.database               = "com.google.firebase:firebase-database:$versions.firebase"

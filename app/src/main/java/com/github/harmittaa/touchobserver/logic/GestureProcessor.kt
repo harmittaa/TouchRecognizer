@@ -14,7 +14,6 @@ enum class GestureDirection {
     UNKNOWN
 }
 
-
 class GestureProcessor {
 
     private fun resolveGestureDirection(
