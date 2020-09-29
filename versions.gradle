@@ -20,6 +20,7 @@ versions.koin = "2.1.6"
 versions.coroutines_play = "1.1.1"
 versions.spinkit = "1.4.0"
 versions.datastore = "1.0.0-alpha01"
+versions.viewpager = "1.0.0"
 
 
 
@@ -36,8 +37,7 @@ androidx.viewmodel              = "androidx.lifecycle:lifecycle-viewmodel-ktx:$v
 androidx.navigation_fragment    = "androidx.navigation:navigation-fragment-ktx:$versions.nav"
 androidx.navigation_ui          = "androidx.navigation:navigation-ui-ktx:$versions.nav"
 androidx.datastore              = "androidx.datastore:datastore-preferences:$versions.datastore"
-
-
+androidx.viewpager              = "androidx.viewpager2:viewpager2:$versions.viewpager"
 deps.androidx = androidx
 
 def firebase = [:]

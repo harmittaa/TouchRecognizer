@@ -1,6 +1,6 @@
 package com.github.harmittaa.touchobserver.model
 
-import com.github.harmittaa.touchobserver.screens.swipe.GestureDirection
+import com.github.harmittaa.touchobserver.logic.GestureDirection
 import com.google.firebase.database.Exclude
 
 data class TouchGesture(

@@ -67,6 +67,7 @@ dependencies {
     implementation deps.androidx.runtime
     implementation deps.androidx.viewmodel
     implementation deps.androidx.datastore
+    implementation deps.androidx.viewpager
 
     implementation deps.androidx.navigation_fragment
     implementation deps.androidx.navigation_ui

@@ -2,10 +2,18 @@ package com.github.harmittaa.touchobserver.logic
 
 import com.github.harmittaa.touchobserver.model.SingleEvent
 import com.github.harmittaa.touchobserver.model.TouchGesture
-import com.github.harmittaa.touchobserver.screens.swipe.GestureDirection
 import kotlin.math.atan
 import kotlin.math.withSign
 import timber.log.Timber
+
+enum class GestureDirection {
+    DOWN_UP,
+    UP_DOWN,
+    LEFT_RIGHT,
+    RIGHT_LEFT,
+    UNKNOWN
+}
+
 
 class GestureProcessor {
 

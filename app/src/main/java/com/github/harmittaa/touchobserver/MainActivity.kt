@@ -11,8 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private val swipeViewModel: SwipeViewModel by viewModel()
     private var gestureList = mutableListOf<SingleEvent>()
-    private val allGestures = mutableListOf<List<SingleEvent>>()
-    private var mVelocityTracker: VelocityTracker? = null
+    private var velocityTracker: VelocityTracker? = null
     var storeEvents = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,17 +28,17 @@ class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_DOWN -> {
                 gestureList = mutableListOf()
                 // Reset the velocity tracker back to its initial state.
-                mVelocityTracker?.clear()
+                velocityTracker?.clear()
                 // If necessary retrieve a new VelocityTracker object to watch the
                 // velocity of a motion.
-                mVelocityTracker = mVelocityTracker ?: VelocityTracker.obtain()
+                velocityTracker = velocityTracker ?: VelocityTracker.obtain()
                 // Add a user's movement to the tracker.
-                mVelocityTracker?.addMovement(event)
+                velocityTracker?.addMovement(event)
 
                 gestureList.add(constructEvent(event, size = event.size, time = event.eventTime))
             }
             MotionEvent.ACTION_MOVE -> {
-                mVelocityTracker?.apply {
+                velocityTracker?.apply {
                     val pointerId: Int = event.getPointerId(event.actionIndex)
                     addMovement(event)
                     computeCurrentVelocity(100)
@@ -63,10 +62,9 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
                 // Return a VelocityTracker object back to be re-used by others.
-                mVelocityTracker?.recycle()
-                mVelocityTracker = null
+                velocityTracker?.recycle()
+                velocityTracker = null
                 swipeViewModel.storeGesture(gestureList)
-                allGestures.add(gestureList)
             }
         }
         return super.dispatchTouchEvent(event)
