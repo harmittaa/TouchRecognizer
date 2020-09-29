@@ -62,11 +62,11 @@ class GestureProcessor {
         val averageVelocityPx100ms = getAverageVelocityPx100ms(gestureList, direction)
         // width of the swipe
         val width =
-            (gestureList.maxBy { it.xPos }?.xPos ?: 0f) - (gestureList.minBy { it.xPos }?.xPos
+            (gestureList.maxByOrNull { it.xPos }?.xPos ?: 0f) - (gestureList.minByOrNull { it.xPos }?.xPos
                 ?: 0f)
         // height of the swipe
         val height =
-            (gestureList.maxBy { it.yPos }?.yPos ?: 0f) - (gestureList.minBy { it.yPos }?.yPos
+            (gestureList.maxByOrNull { it.yPos }?.yPos ?: 0f) - (gestureList.minByOrNull { it.yPos }?.yPos
                 ?: 0f)
 
         var yAccelerationPixelsPer100ms = 0f
@@ -173,11 +173,11 @@ class GestureProcessor {
         return when (direction) {
             GestureDirection.DOWN_UP, GestureDirection.UP_DOWN -> {
                 // sign to convert to positive, down up is always negative
-                gestureList.maxBy { event -> event.yVelocity.withSign(1) }?.yVelocity?.withSign(1)
+                gestureList.maxByOrNull { event -> event.yVelocity.withSign(1) }?.yVelocity?.withSign(1)
                     ?: 0f
             }
             GestureDirection.LEFT_RIGHT, GestureDirection.RIGHT_LEFT -> {
-                gestureList.maxBy { event -> event.xVelocity.withSign(1) }?.xVelocity?.withSign(1)
+                gestureList.maxByOrNull { event -> event.xVelocity.withSign(1) }?.xVelocity?.withSign(1)
                     ?: 0f
             }
             GestureDirection.UNKNOWN -> {
