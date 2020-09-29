@@ -1,29 +1,28 @@
 package com.github.harmittaa.touchobserver
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.VelocityTracker
+import androidx.appcompat.app.AppCompatActivity
 import com.github.harmittaa.touchobserver.model.SingleEvent
+import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val swipeViewModel: SwipeViewModel by viewModel()
     private var gestureList = mutableListOf<SingleEvent>()
     private val allGestures = mutableListOf<List<SingleEvent>>()
     private var mVelocityTracker: VelocityTracker? = null
-    private var storeEvents = true
+    var storeEvents = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (!storeEvents) {
-            return true
+    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+        if (!storeEvents || event == null) {
+            return super.dispatchTouchEvent(event)
         }
 
         when (event.actionMasked) {
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 allGestures.add(gestureList)
             }
         }
-        return true
+        return super.dispatchTouchEvent(event)
     }
 
     private fun constructEvent(
@@ -89,4 +88,3 @@ class MainActivity : AppCompatActivity() {
             time = time
         )
 }
-

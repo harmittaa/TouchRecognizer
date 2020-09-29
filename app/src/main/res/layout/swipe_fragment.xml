@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        tools:context=".SwipeFragment">
+        tools:context=".screens.swipe.SwipeFragment">
 
         <TextView
             android:id="@+id/swipe_layout_description"
@@ -50,6 +50,6 @@
 
         <variable
             name="viewModel"
-            type="com.github.harmittaa.touchobserver.SwipeViewModel" />
+            type="com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel" />
     </data>
 </layout>
