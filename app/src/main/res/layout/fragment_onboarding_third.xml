@@ -2,14 +2,23 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B5D9CD">
+        android:animateLayoutChanges="true"
+        android:background="#CEE4D0">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
@@ -19,17 +28,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/woman_phone_bg" />
+            app:srcCompat="@drawable/hand_selection_red" />
 
         <TextView
-            android:id="@+id/obFirstTitle"
+            android:id="@+id/obThirdTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="@string/app_title"
+            android:text="@string/handedness"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintTop_toBottomOf="@id/guideline2" />
 
@@ -41,18 +49,49 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <TextView
-            android:id="@+id/obFirstDescription"
+            android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:fontFamily="@font/open_sans"
-            android:text="@string/app_explanation"
+            android:text="@string/handedness_description"
             android:textAlignment="center"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/obFirstTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/obThirdTitle" />
+
+        <Button
+            android:id="@+id/leftButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_24"
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/button_color"
+            android:elevation="0dp"
+            android:text="@string/left"
+            android:textColor="@color/white"
+            app:isSelected="@{viewModel.leftSelectedLv}"
+            app:layout_constraintEnd_toEndOf="@id/guideline3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
+
+        <Button
+            android:id="@+id/rightButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_24"
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/button_color"
+            android:elevation="0dp"
+            android:text="@string/right"
+            android:textColor="@color/white"
+            app:isSelected="@{viewModel.rightSelectedLv}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
 
         <Button
             android:id="@+id/continueButton"
@@ -60,16 +99,25 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginBottom="@dimen/margin_24"
-            android:background="@drawable/main_button_background"
+            android:background="@drawable/button_color"
             android:elevation="0dp"
             android:text="@string/continue_txt"
             android:textColor="@color/white"
+            app:isSelected="@{viewModel.rightSelectedLv || viewModel.leftSelectedLv}"
+            android:enabled="@{viewModel.rightSelectedLv || viewModel.leftSelectedLv}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline4" />
+            app:layout_constraintStart_toStartOf="@id/guideline3" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

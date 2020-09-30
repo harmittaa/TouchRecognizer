@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="viewModel"
             type="com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel" />
@@ -10,9 +11,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:background="#FFDDB0">
 
         <ImageView
@@ -68,10 +69,10 @@
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
             android:background="@drawable/button_color"
-            app:isSelected="@{viewModel.maleSelectedLv}"
             android:elevation="0dp"
             android:text="@string/male"
             android:textColor="@color/white"
+            app:isSelected="@{viewModel.maleSelectedLv}"
             app:layout_constraintEnd_toEndOf="@id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView" />
@@ -84,10 +85,10 @@
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
             android:background="@drawable/button_color"
-            app:isSelected="@{viewModel.femaleSelectedLv}"
             android:elevation="0dp"
             android:text="@string/female"
             android:textColor="@color/white"
+            app:isSelected="@{viewModel.femaleSelectedLv}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline3"
             app:layout_constraintTop_toBottomOf="@id/textView" />
@@ -99,14 +100,14 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginBottom="@dimen/margin_24"
             android:background="@drawable/button_color"
-
             android:elevation="0dp"
-            app:isSelected="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
             android:text="@string/continue_txt"
             android:textColor="@color/white"
+            app:isSelected="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
+            android:enabled="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/guideline3" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"

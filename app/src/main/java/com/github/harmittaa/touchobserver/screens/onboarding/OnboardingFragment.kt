@@ -11,14 +11,11 @@ import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.github.harmittaa.touchobserver.MainActivity
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFirstBinding
+import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFourthBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSecondBinding
+import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingThirdBinding
 import com.github.harmittaa.touchobserver.databinding.ScreenOnboardingBinding
-import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
-
-private const val ARG_OBJECT = "object"
 
 class OnboardingFragment : Fragment() {
     private lateinit var binding: ScreenOnboardingBinding
@@ -49,9 +46,7 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val demoCollectionAdapter = DemoCollectionAdapter(this)
         binding.pager.adapter = demoCollectionAdapter
-        TabLayoutMediator(binding.pagerTabs, binding.pager) { tab, position ->
-            // Some implementation
-        }.attach()
+        binding.pager.isUserInputEnabled = false
     }
 
     private fun bindViewModel() {
@@ -81,6 +76,16 @@ class OnboardingFragment : Fragment() {
                 binding.consentButton.isEnabled = true
             }
         }
+
+        viewModel.onContinueInvoked.observe(viewLifecycleOwner) {
+            if (binding.pager.currentItem == 3) {
+                viewModel.onConsentGiven()
+            } else {
+                binding.pager.apply {
+                    setCurrentItem(currentItem + 1, true)
+                }
+            }
+        }
     }
 
     private fun navigateOnwards() {
@@ -90,25 +95,24 @@ class OnboardingFragment : Fragment() {
 
     class DemoCollectionAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-        override fun getItemCount(): Int = 2
+        override fun getItemCount(): Int = 4
 
         override fun createFragment(position: Int): Fragment {
-            // Return a NEW fragment instance in createFragment(int)
-            val fragment = if (position == 0) {
-                OnboardingFirstScreen()
-            } else {
-                OnboardingSecondScreen()
+            return when (position) {
+                0 -> OnboardingFirstScreen()
+                1 -> OnboardingSecondScreen()
+                2 -> OnboardingThirdScreen()
+                3 -> OnboardingFourthScreen()
+                else -> {
+                    OnboardingFirstScreen()
+                }
             }
-            fragment.arguments = Bundle().apply {
-                // Our object is just an integer :-P
-                putInt(ARG_OBJECT, position + 1)
-            }
-            return fragment
         }
     }
 
     class OnboardingFirstScreen : Fragment() {
         private lateinit var binding: FragmentOnboardingFirstBinding
+        private val viewModel: OnboardingViewModel by sharedViewModel()
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -122,7 +126,9 @@ class OnboardingFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
             binding.continueButton.setOnClickListener {
-                Timber.d("Clickyyy")
+                if (it.isEnabled) {
+                    viewModel.onContinueButtonClicked()
+                }
             }
         }
     }
@@ -154,6 +160,71 @@ class OnboardingFragment : Fragment() {
                 viewModel.femaleSelected()
             }
             binding.continueButton.setOnClickListener {
+                if (it.isEnabled) {
+                    viewModel.onContinueButtonClicked()
+                }
+            }
+        }
+    }
+
+    class OnboardingThirdScreen : Fragment() {
+        private lateinit var binding: FragmentOnboardingThirdBinding
+        private val viewModel: OnboardingViewModel by sharedViewModel()
+
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View {
+            binding = FragmentOnboardingThirdBinding.inflate(inflater, container, false)
+            binding.apply {
+                this.lifecycleOwner = this@OnboardingThirdScreen.viewLifecycleOwner
+                this.viewModel = this@OnboardingThirdScreen.viewModel
+            }
+            return binding.root
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            binding.leftButton.setOnClickListener {
+                viewModel.leftSelected()
+            }
+            binding.rightButton.setOnClickListener {
+                viewModel.rightSelected()
+            }
+            binding.continueButton.setOnClickListener {
+                if (it.isEnabled) {
+                    viewModel.onContinueButtonClicked()
+                }
+            }
+        }
+    }
+
+    class OnboardingFourthScreen : Fragment() {
+        private lateinit var binding: FragmentOnboardingFourthBinding
+        private val viewModel: OnboardingViewModel by sharedViewModel()
+
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View {
+            binding = FragmentOnboardingFourthBinding.inflate(inflater, container, false)
+            binding.apply {
+                this.lifecycleOwner = this@OnboardingFourthScreen.viewLifecycleOwner
+                this.viewModel = this@OnboardingFourthScreen.viewModel
+            }
+            return binding.root
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            binding.continueButton.setOnClickListener {
+                if (it.isEnabled) {
+                    viewModel.onContinueButtonClicked()
+                }
             }
         }
     }

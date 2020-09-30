@@ -7,7 +7,11 @@
     <string name="woman_using_phone">woman using phone</string>
     <string name="information">Information</string>
     <string name="gender_description">For data labelling purposes, please indicate your gender</string>
+    <string name="handedness_description">For data labelling purposes, please indicate your primary handedness</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
     <string name="continue_txt">Continue</string>
+    <string name="handedness">Handedness</string>
 </resources>

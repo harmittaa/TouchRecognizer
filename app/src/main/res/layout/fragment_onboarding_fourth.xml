@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B5D9CD">
+        android:animateLayoutChanges="true"
+        android:background="#FBFCFE">
 
         <ImageView
             android:id="@+id/imageView"
@@ -19,17 +28,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/woman_phone_bg" />
+            app:srcCompat="@drawable/woman_running" />
 
         <TextView
-            android:id="@+id/obFirstTitle"
+            android:id="@+id/obSecondTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="@string/app_title"
+            android:text="Last step!"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintTop_toBottomOf="@id/guideline2" />
 
@@ -41,18 +49,17 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <TextView
-            android:id="@+id/obFirstDescription"
+            android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:fontFamily="@font/open_sans"
-            android:text="@string/app_explanation"
+            android:text="@string/consent_text"
             android:textAlignment="center"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/obFirstTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/obSecondTitle" />
 
         <Button
             android:id="@+id/continueButton"
@@ -60,16 +67,32 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginBottom="@dimen/margin_24"
-            android:background="@drawable/main_button_background"
+            android:background="@drawable/button_color"
             android:elevation="0dp"
             android:text="@string/continue_txt"
             android:textColor="@color/white"
+            app:isSelected="@{!viewModel.showLoading}"
+            android:enabled="@{!viewModel.showLoading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline4" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/onboardingLoadingIndicator"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@id/continueButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            app:visibleGone="@{viewModel.showLoading}" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
+            android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
