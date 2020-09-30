@@ -10,16 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.github.harmittaa.touchobserver.MainActivity
-import com.github.harmittaa.touchobserver.R
+import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFirstBinding
+import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSecondBinding
 import com.github.harmittaa.touchobserver.databinding.ScreenOnboardingBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 private const val ARG_OBJECT = "object"
 
 class OnboardingFragment : Fragment() {
     private lateinit var binding: ScreenOnboardingBinding
-    private val viewModel: OnboardingViewModel by viewModel()
+    private val viewModel: OnboardingViewModel by sharedViewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -105,24 +108,53 @@ class OnboardingFragment : Fragment() {
     }
 
     class OnboardingFirstScreen : Fragment() {
+        private lateinit var binding: FragmentOnboardingFirstBinding
 
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
-            return inflater.inflate(R.layout.fragment_onboarding_first, container, false)
+            binding = FragmentOnboardingFirstBinding.inflate(inflater, container, false)
+            return binding.root
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+            binding.continueButton.setOnClickListener {
+                Timber.d("Clickyyy")
+            }
         }
     }
 
     class OnboardingSecondScreen : Fragment() {
+        private lateinit var binding: FragmentOnboardingSecondBinding
+        private val viewModel: OnboardingViewModel by sharedViewModel()
 
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
-            return inflater.inflate(R.layout.fragment_onboarding_second, container, false)
+            binding = FragmentOnboardingSecondBinding.inflate(inflater, container, false)
+            binding.apply {
+                this.lifecycleOwner = this@OnboardingSecondScreen.viewLifecycleOwner
+                this.viewModel = this@OnboardingSecondScreen.viewModel
+            }
+            return binding.root
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            binding.maleButton.setOnClickListener {
+                viewModel.maleSelected()
+            }
+            binding.femaleButton.setOnClickListener {
+                viewModel.femaleSelected()
+            }
+            binding.continueButton.setOnClickListener {
+            }
         }
     }
 }

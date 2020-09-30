@@ -49,4 +49,19 @@ class OnboardingViewModel(
             }
         }
     }
+
+    private val _maleSelectedLv = MutableLiveData(false)
+    val maleSelectedLv: LiveData<Boolean> = _maleSelectedLv
+    private val _femaleSelectedLv = MutableLiveData(false)
+    val femaleSelectedLv: LiveData<Boolean> = _femaleSelectedLv
+
+    fun maleSelected() {
+        _maleSelectedLv.value = !(_maleSelectedLv.value ?: false)
+        _femaleSelectedLv.value = false
+    }
+
+    fun femaleSelected() {
+        _femaleSelectedLv.value = !(_femaleSelectedLv.value ?: false)
+        _maleSelectedLv.value = false
+    }
 }

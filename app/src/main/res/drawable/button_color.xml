@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/main_button_background_selection" android:state_selected="true" />
-    <item android:drawable="@drawable/main_button_background_no_selection" android:state_pressed="true" android:state_selected="false" />
-    <item android:color="#000000" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="100"
+    android:exitFadeDuration="100">
+    <item
+        android:state_selected="true"
+        android:drawable="@drawable/main_button_background_selection" />
+    <item
+        android:drawable="@drawable/main_button_background_no_selection" />
 </selector>

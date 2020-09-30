@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFDDB0">
@@ -23,12 +30,12 @@
             app:srcCompat="@drawable/man_thumb_bg" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/obSecondTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="Information"
+            android:text="@string/information"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintTop_toBottomOf="@id/guideline2" />
@@ -47,11 +54,11 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:fontFamily="@font/open_sans"
-            android:text="For data labelling purposes, please indicate your gender"
+            android:text="@string/gender_description"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/obSecondTitle" />
 
         <Button
             android:id="@+id/maleButton"
@@ -60,9 +67,10 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/main_button_background"
+            android:background="@drawable/button_color"
+            app:isSelected="@{viewModel.maleSelectedLv}"
             android:elevation="0dp"
-            android:text="Male"
+            android:text="@string/male"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,23 +83,26 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/main_button_background"
+            android:background="@drawable/button_color"
+            app:isSelected="@{viewModel.femaleSelectedLv}"
             android:elevation="0dp"
-            android:text="Male"
+            android:text="@string/female"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline3"
             app:layout_constraintTop_toBottomOf="@id/textView" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/continueButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginBottom="@dimen/margin_24"
-            android:background="@drawable/main_button_background"
+            android:background="@drawable/button_color"
+
             android:elevation="0dp"
-            android:text="Continue"
+            app:isSelected="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
+            android:text="@string/continue_txt"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
