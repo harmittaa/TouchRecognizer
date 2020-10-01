@@ -23,6 +23,7 @@ versions.datastore = "1.0.0-alpha01"
 versions.viewpager = "1.0.0"
 versions.material = "1.2.1"
 versions.lottie = "3.4.2"
+versions.crashlytics_ktx = "17.2.2"
 
 
 
@@ -72,6 +73,10 @@ deps.spinkit = spinkit
 def lottie = [:]
 lottie.lottie                   = "com.airbnb.android:lottie:$versions.lottie"
 deps.lottie = lottie
+
+def crashlytics = [:]
+crashlytics.crashlytics_ktx     = "com.google.firebase:firebase-crashlytics-ktx:$versions.crashlytics_ktx"
+deps.crashlytics = crashlytics
 
 ext.deps = deps
 

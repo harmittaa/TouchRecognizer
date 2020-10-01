@@ -2,6 +2,7 @@ package com.github.harmittaa.touchobserver.repository
 
 import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.remote.AuthProvider
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.database.FirebaseDatabase
 import timber.log.Timber
 
@@ -19,7 +20,10 @@ class UserRepository(
 
     fun userReady() = auth.isFirebaseUserAvailable()
 
-    suspend fun instantiateData(gender: UserData.Gender, handedness: UserData.Handedness): Resource {
+    suspend fun instantiateData(
+        gender: UserData.Gender,
+        handedness: UserData.Handedness
+    ): Resource {
         val id = auth.userId ?: return Resource.Failure("Anonymous user ID not found")
         val dbRefToUser = firebaseDatabase.reference.child("data").child(id)
         return try {
@@ -28,8 +32,12 @@ class UserRepository(
             localDataStore.storeConsent()
             Resource.Success
         } catch (e: Exception) {
+            FirebaseCrashlytics.getInstance().recordException(TouchObserverThrowable("Exception in instantiateData", e))
             Timber.d("Something went wrong $e")
             Resource.Failure(reason = e.localizedMessage ?: "Unknown error")
         }
     }
 }
+
+class TouchObserverThrowable(information: String, exception: Exception) :
+    Throwable(message = "$information || Original cause ${exception.message}", cause = exception)

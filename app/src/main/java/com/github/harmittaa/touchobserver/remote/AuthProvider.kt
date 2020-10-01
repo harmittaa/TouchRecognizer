@@ -1,7 +1,9 @@
 package com.github.harmittaa.touchobserver.remote
 
 import com.github.harmittaa.touchobserver.repository.Resource
+import com.github.harmittaa.touchobserver.repository.TouchObserverThrowable
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import java.lang.Exception
 import kotlinx.coroutines.tasks.await
 
@@ -45,6 +47,7 @@ class AuthProviderImpl(private val firebaseAuth: FirebaseAuth) : AuthProvider {
                 Pair(false, "User is null, please try again")
             }
         } catch (e: Exception) {
+            FirebaseCrashlytics.getInstance().recordException(TouchObserverThrowable("Exception in signInUserAuth", e))
             Pair(false, "Could not create anonymous user ${e.localizedMessage}")
         }
     }
