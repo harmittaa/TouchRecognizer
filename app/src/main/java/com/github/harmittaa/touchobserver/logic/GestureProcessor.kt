@@ -53,7 +53,7 @@ class GestureProcessor {
     }
 
     fun validateGesture(gestureList: MutableList<SingleEvent>): TouchGesture? {
-        // TODO
+        // Ignoring clicks
         if (gestureList.count() <= 2) return null
 
         val startPoint = gestureList.first()

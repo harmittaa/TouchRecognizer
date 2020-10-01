@@ -1,16 +1,14 @@
-package com.github.harmittaa.touchobserver.screens.swipe
+package com.github.harmittaa.touchobserver.activity
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.harmittaa.touchobserver.logic.GestureProcessor
 import com.github.harmittaa.touchobserver.model.SingleEvent
 import com.github.harmittaa.touchobserver.repository.TouchRepository
 
-class SwipeViewModel(
+class MainActivityViewModel(
     private val repository: TouchRepository,
     private val gestureProcessor: GestureProcessor
 ) : ViewModel() {
-    var gestureCount: MutableLiveData<Int> = MutableLiveData()
 
     fun storeGesture(gestureList: MutableList<SingleEvent>) {
         gestureProcessor.validateGesture(gestureList)?.let { validGesture ->

@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 class OnboardingViewModel(
     private val userRepository: UserRepository
 ) : ViewModel() {
+    // Shared functionality
     private val _showLoading = MutableLiveData(false)
     val showLoading: LiveData<Boolean> = _showLoading
     private val _initResult = MutableLiveData<Resource.Failure>()
@@ -20,12 +21,19 @@ class OnboardingViewModel(
     private val _canSkipLogin = MutableLiveData(false)
     val canSkipLogin: LiveData<Boolean> = _canSkipLogin
 
+    private val _onContinueInvoked = MutableLiveData<Unit>()
+    val onContinueInvoked: LiveData<Unit> = _onContinueInvoked
+
     init {
         viewModelScope.launch {
             val consent = userRepository.hasGivenConsent()
             val userReady = userRepository.userReady()
             _canSkipLogin.value = consent && userReady
         }
+    }
+
+    fun onContinueButtonClicked() {
+        _onContinueInvoked.value = Unit
     }
 
     fun onConsentGiven() {
@@ -58,8 +66,7 @@ class OnboardingViewModel(
         }
     }
 
-    var onContinueInvoked = MutableLiveData<Unit>()
-
+    // GENDER SELECTION
     private val _maleSelectedLv = MutableLiveData(false)
     val maleSelectedLv: LiveData<Boolean> = _maleSelectedLv
     private val _femaleSelectedLv = MutableLiveData(false)
@@ -83,6 +90,7 @@ class OnboardingViewModel(
         }
     }
 
+    // HANDEDNESS SELECTION
     private val _leftSelectedLv = MutableLiveData(false)
     val leftSelectedLv: LiveData<Boolean> = _leftSelectedLv
     private val _rightSelectedLv = MutableLiveData(false)
@@ -102,9 +110,5 @@ class OnboardingViewModel(
         if (_rightSelectedLv.value == true) {
             handedness.value = UserRepository.Handedness.RIGHT
         }
-    }
-
-    fun onContinueButtonClicked() {
-        onContinueInvoked.value = Unit
     }
 }

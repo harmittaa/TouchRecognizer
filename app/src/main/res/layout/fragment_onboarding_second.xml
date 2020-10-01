@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="#FFDDB0">
+        android:background="@color/orange">
 
         <ImageView
             android:id="@+id/imageView"
@@ -23,8 +23,7 @@
             android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
             android:contentDescription="@string/woman_using_phone"
-            android:scaleType="fitEnd"
-            app:layout_constraintBottom_toTopOf="@id/guideline2"
+            app:layout_constraintBottom_toTopOf="@id/centerGuide"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,17 +31,16 @@
 
         <TextView
             android:id="@+id/obSecondTitle"
+            style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/open_sans_bold"
             android:text="@string/information"
-            android:textAlignment="center"
             android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@id/guideline2" />
+            app:layout_constraintTop_toBottomOf="@id/centerGuide" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
+            android:id="@+id/centerGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -50,13 +48,12 @@
 
         <TextView
             android:id="@+id/textView"
+            style="@style/Description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
-            android:fontFamily="@font/open_sans"
             android:text="@string/gender_description"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/obSecondTitle" />
@@ -68,12 +65,12 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/button_color"
+            android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
             android:text="@string/male"
             android:textColor="@color/white"
             app:isSelected="@{viewModel.maleSelectedLv}"
-            app:layout_constraintEnd_toEndOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="@id/centerGuideHorizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView" />
 
@@ -84,13 +81,13 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/button_color"
+            android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
             android:text="@string/female"
             android:textColor="@color/white"
             app:isSelected="@{viewModel.femaleSelectedLv}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintStart_toStartOf="@id/centerGuideHorizontal"
             app:layout_constraintTop_toBottomOf="@id/textView" />
 
         <Button
@@ -99,18 +96,18 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginBottom="@dimen/margin_24"
-            android:background="@drawable/button_color"
+            android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
+            android:enabled="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
             android:text="@string/continue_txt"
             android:textColor="@color/white"
             app:isSelected="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
-            android:enabled="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3" />
+            app:layout_constraintStart_toStartOf="@id/centerGuideHorizontal" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
+            android:id="@+id/centerGuideHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

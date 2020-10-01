@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="#CEE4D0">
+        android:background="@color/lighter_green">
 
         <ImageView
             android:id="@+id/imageView"
@@ -24,7 +24,7 @@
             android:layout_marginTop="@dimen/margin_16"
             android:contentDescription="@string/woman_using_phone"
             android:scaleType="fitEnd"
-            app:layout_constraintBottom_toTopOf="@id/guideline2"
+            app:layout_constraintBottom_toTopOf="@id/centerGuideHorizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,31 +32,21 @@
 
         <TextView
             android:id="@+id/obThirdTitle"
+            style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/open_sans_bold"
             android:text="@string/handedness"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@id/guideline2" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintTop_toBottomOf="@id/centerGuideHorizontal" />
 
         <TextView
             android:id="@+id/textView"
+            style="@style/Description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
-            android:fontFamily="@font/open_sans"
             android:text="@string/handedness_description"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/obThirdTitle" />
@@ -68,12 +58,12 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/button_color"
+            android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
             android:text="@string/left"
             android:textColor="@color/white"
             app:isSelected="@{viewModel.leftSelectedLv}"
-            app:layout_constraintEnd_toEndOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="@id/centerGuideVertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView" />
 
@@ -84,13 +74,13 @@
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/button_color"
+            android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
             android:text="@string/right"
             android:textColor="@color/white"
             app:isSelected="@{viewModel.rightSelectedLv}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintStart_toStartOf="@id/centerGuideVertical"
             app:layout_constraintTop_toBottomOf="@id/textView" />
 
         <Button
@@ -99,28 +89,29 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginBottom="@dimen/margin_24"
-            android:background="@drawable/button_color"
+            android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
+            android:enabled="@{viewModel.rightSelectedLv || viewModel.leftSelectedLv}"
             android:text="@string/continue_txt"
             android:textColor="@color/white"
             app:isSelected="@{viewModel.rightSelectedLv || viewModel.leftSelectedLv}"
-            android:enabled="@{viewModel.rightSelectedLv || viewModel.leftSelectedLv}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3" />
+            app:layout_constraintStart_toStartOf="@id/centerGuideVertical" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
+            android:id="@+id/centerGuideVertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
+            android:id="@+id/centerGuideHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

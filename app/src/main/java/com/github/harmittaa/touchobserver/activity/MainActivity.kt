@@ -1,15 +1,18 @@
-package com.github.harmittaa.touchobserver
+package com.github.harmittaa.touchobserver.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import androidx.appcompat.app.AppCompatActivity
+import com.github.harmittaa.touchobserver.R
 import com.github.harmittaa.touchobserver.model.SingleEvent
-import com.github.harmittaa.touchobserver.screens.swipe.SwipeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+private const val VELOCITY_RATE = 100
 class MainActivity : AppCompatActivity() {
-    private val swipeViewModel: SwipeViewModel by viewModel()
+
+    private val swipeViewModel: MainActivityViewModel by viewModel()
     private var gestureList = mutableListOf<SingleEvent>()
     private var velocityTracker: VelocityTracker? = null
     var storeEvents = true
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
+    @SuppressLint("Recycle")
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
         if (!storeEvents || event == null) {
             return super.dispatchTouchEvent(event)
@@ -42,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 velocityTracker?.apply {
                     val pointerId: Int = event.getPointerId(event.actionIndex)
                     addMovement(event)
-                    computeCurrentVelocity(100)
+                    computeCurrentVelocity(VELOCITY_RATE)
                     gestureList.add(
                         constructEvent(
                             event = event,

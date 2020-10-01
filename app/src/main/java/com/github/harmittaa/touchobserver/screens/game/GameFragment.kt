@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import androidx.fragment.app.Fragment
-import com.github.harmittaa.touchobserver.MainActivity
+import com.github.harmittaa.touchobserver.activity.MainActivity
 import com.github.harmittaa.touchobserver.databinding.ScreenGameBinding
 import com.github.harmittaa.touchobserver.view.TouchWebView
 import java.util.Locale

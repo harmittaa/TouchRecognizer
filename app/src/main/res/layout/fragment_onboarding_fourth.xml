@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="#FBFCFE">
+        android:background="@color/white_snow">
 
         <ImageView
             android:id="@+id/imageView"
@@ -24,7 +24,7 @@
             android:layout_marginTop="@dimen/margin_16"
             android:contentDescription="@string/woman_using_phone"
             android:scaleType="fitEnd"
-            app:layout_constraintBottom_toTopOf="@id/guideline2"
+            app:layout_constraintBottom_toTopOf="@id/centerGuideHorizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,17 +36,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="Last step!"
+            android:text="@string/last_step"
             android:textAlignment="center"
             android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@id/guideline2" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintTop_toBottomOf="@id/centerGuideHorizontal" />
 
         <TextView
             android:id="@+id/textView"
@@ -67,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_24"
             android:layout_marginBottom="@dimen/margin_24"
-            android:background="@drawable/button_color"
+            android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
             android:text="@string/continue_txt"
             android:textColor="@color/white"
@@ -76,7 +69,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/onboardingLoadingIndicator"
@@ -92,10 +84,11 @@
             app:visibleGone="@{viewModel.showLoading}" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
+            android:id="@+id/centerGuideHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
