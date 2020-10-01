@@ -55,7 +55,7 @@ class OnboardingFragment : Fragment() {
     private fun bindViewModel() {
         viewModel.canSkipLogin.observe(viewLifecycleOwner) { resource ->
             CoroutineScope(Dispatchers.Main).launch {
-                delay(2000)
+                delay(2300)
                 if (resource) {
                     navigateOnwards()
                     return@launch

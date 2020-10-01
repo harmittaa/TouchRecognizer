@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_green">
+        android:background="@color/light_green"
+        app:layoutDescription="@xml/fragment_onboarding_splash_scene">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_fileName="strategy_animation.json"
             app:lottie_loop="true" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/titleText"
+            style="@style/Title"
+            android:layout_width="0dp"
+            android:textColor="@color/white_snow"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="@id/animation_view"
+            app:layout_constraintEnd_toEndOf="@id/animation_view"
+            app:layout_constraintStart_toStartOf="@id/animation_view" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
