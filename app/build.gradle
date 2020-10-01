@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.firebase.crashlytics'
 apply from: "$project.rootDir/spotless.gradle"
 
 
@@ -67,9 +68,12 @@ dependencies {
     implementation deps.androidx.runtime
     implementation deps.androidx.viewmodel
     implementation deps.androidx.datastore
+    implementation deps.androidx.viewpager
 
     implementation deps.androidx.navigation_fragment
     implementation deps.androidx.navigation_ui
+
+    implementation deps.material.material
 
     implementation deps.firebase.database
     implementation deps.firebase.auth
@@ -83,6 +87,10 @@ dependencies {
     implementation deps.kotlinx_coroutines.play
 
     implementation deps.spinkit.spinkit
+
+    implementation deps.lottie.lottie
+
+    implementation deps.crashlytics.crashlytics_ktx
 
     kapt "com.android.databinding:compiler:4.0.1"
 }

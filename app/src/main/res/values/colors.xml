@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#A5C8B2</color>
     <color name="colorAccent">#8ECCC6</color>
     <color name="labelPrimary">#32504D</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#D3D3D3</color>
+    <color name="light_green">#B5D9CD</color>
+    <color name="orange">#FFDDB0</color>
+    <color name="lighter_green">#CEE4D0</color>
+    <color name="white_snow">#FBFCFE</color>
 </resources>

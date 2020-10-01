@@ -2,10 +2,17 @@ package com.github.harmittaa.touchobserver.logic
 
 import com.github.harmittaa.touchobserver.model.SingleEvent
 import com.github.harmittaa.touchobserver.model.TouchGesture
-import com.github.harmittaa.touchobserver.screens.swipe.GestureDirection
 import kotlin.math.atan
 import kotlin.math.withSign
 import timber.log.Timber
+
+enum class GestureDirection {
+    DOWN_UP,
+    UP_DOWN,
+    LEFT_RIGHT,
+    RIGHT_LEFT,
+    UNKNOWN
+}
 
 class GestureProcessor {
 
@@ -46,7 +53,7 @@ class GestureProcessor {
     }
 
     fun validateGesture(gestureList: MutableList<SingleEvent>): TouchGesture? {
-        // TODO
+        // Ignoring clicks
         if (gestureList.count() <= 2) return null
 
         val startPoint = gestureList.first()
@@ -114,7 +121,7 @@ class GestureProcessor {
             euclideanDistance = totalDistancePx,
             durationMs = durationMs,
             maxVelocityPx100ms = maxVelocityPx100ms,
-            avgVelocityPx100mx = averageVelocityPx100ms,
+            avgVelocityPx100ms = averageVelocityPx100ms,
             yMaxAcceleration = yAccelerationPixelsPer100ms,
             xMaxAcceleration = xAccelerationPixelsPer100ms,
             swipeCurvature = curvature

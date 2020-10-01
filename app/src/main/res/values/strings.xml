@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">TouchObserver</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="consent_text">This application gathers your touch data while you play the following game. The data is anonymous and only used for research purposes. Data is not gathered outside of this application. Please click below to consent. Contact developers to delete your data.</string>
+    <string name="consent_text">This application gathers your touch data while you play the following game. The data is anonymous and only used for research purposes. Data is not gathered outside of this application. Please click below to consent.</string>
     <string name="agree_and_continue">Continue</string>
+    <string name="app_explanation">This application gathers touch data for reaserch purposes. The information is anonymous and used for research purposes.</string>
+    <string name="app_title">Swipe Profiler</string>
+    <string name="woman_using_phone">woman using phone</string>
+    <string name="information">Information</string>
+    <string name="gender_description">For data labelling purposes, please indicate your gender</string>
+    <string name="handedness_description">For data labelling purposes, please indicate your primary handedness</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="continue_txt">Continue</string>
+    <string name="handedness">Handedness</string>
+    <string name="last_step">Last step!</string>
 </resources>

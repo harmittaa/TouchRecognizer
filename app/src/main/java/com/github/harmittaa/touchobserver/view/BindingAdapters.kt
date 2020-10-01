@@ -7,3 +7,8 @@ import androidx.databinding.BindingAdapter
 fun showHide(view: View, show: Boolean) {
     view.visibility = if (show) View.VISIBLE else View.GONE
 }
+
+@BindingAdapter("isSelected")
+fun setSelected(view: View, selected: Boolean) {
+    view.isSelected = selected
+}
