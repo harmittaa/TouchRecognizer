@@ -103,3 +103,6 @@ lint/tmp/
 *.hprof
 
 .idea/
+
+app/release/
+

@@ -19,3 +19,29 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class androidx.datastore.*.** {*;}
+#noinspection ShrinkerUnresolvedReference
+
+
+-keepattributes Signature
+
+-keep class com.github.harmittaa.touchobserver.model.SingleEvent {
+    <fields>;
+    <init>();
+    <methods>;
+}
+
+-keep class com.github.harmittaa.touchobserver.model.TouchGesture {
+    <fields>;
+    <init>();
+    <methods>;
+}
+
+-keep class com.github.harmittaa.touchobserver.model.UserData {
+    <fields>;
+    <init>();
+    <methods>;
+}
+
+-keepclassmembers class com.github.harmittaa.touchobserver.logic.** { *; }
+-keepclassmembers class com.github.harmittaa.touchobserver.repository.** { *; }
