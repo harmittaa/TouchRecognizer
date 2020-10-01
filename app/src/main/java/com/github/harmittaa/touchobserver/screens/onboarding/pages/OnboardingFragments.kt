@@ -10,6 +10,7 @@ import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFourthBi
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSecondBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSplashBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingThirdBinding
+import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -49,6 +50,7 @@ class OnboardingFirstScreen : Fragment() {
     }
 }
 
+private const val genderAnimation = 500
 class OnboardingSecondScreen : Fragment() {
     private lateinit var binding: FragmentOnboardingSecondBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
@@ -78,6 +80,20 @@ class OnboardingSecondScreen : Fragment() {
         binding.continueButton.setOnClickListener {
             if (it.isEnabled) {
                 viewModel.onContinueButtonClicked()
+            }
+        }
+
+        viewModel.gender.observe(viewLifecycleOwner) { gender ->
+            if (gender == null) return@observe
+            when (gender) {
+                UserData.Gender.MALE -> {
+                    binding.genderImage.visibility = View.VISIBLE
+                    binding.genderImageFemale.visibility = View.GONE
+                }
+                UserData.Gender.FEMALE -> {
+                    binding.genderImageFemale.visibility = View.VISIBLE
+                    binding.genderImage.visibility = View.GONE
+                }
             }
         }
     }

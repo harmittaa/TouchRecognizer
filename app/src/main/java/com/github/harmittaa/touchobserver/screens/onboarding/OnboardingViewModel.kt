@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.repository.Resource
 import com.github.harmittaa.touchobserver.repository.UserRepository
 import kotlinx.coroutines.launch
@@ -24,6 +25,10 @@ class OnboardingViewModel(
     private val _onContinueInvoked = MutableLiveData<Unit>()
     val onContinueInvoked: LiveData<Unit> = _onContinueInvoked
 
+    private val _gender = MutableLiveData(UserData.Gender.MALE)
+    val gender: LiveData<UserData.Gender> = _gender
+    private val handedness = MutableLiveData<UserData.Handedness>()
+
     init {
         viewModelScope.launch {
             val consent = userRepository.hasGivenConsent()
@@ -42,8 +47,8 @@ class OnboardingViewModel(
             when (val signInResult = userRepository.attemptSignIn()) {
                 is Resource.Success -> {
                     instantiateUserData(
-                        gender.value ?: UserRepository.Gender.MALE,
-                        handedness.value ?: UserRepository.Handedness.RIGHT
+                        gender.value ?: UserData.Gender.MALE,
+                        handedness.value ?: UserData.Handedness.RIGHT
                     )
                 }
                 is Resource.Failure -> {
@@ -55,8 +60,8 @@ class OnboardingViewModel(
     }
 
     private suspend fun instantiateUserData(
-        gender: UserRepository.Gender,
-        handedness: UserRepository.Handedness
+        gender: UserData.Gender,
+        handedness: UserData.Handedness
     ) {
         when (val result = userRepository.instantiateData(gender, handedness)) {
             is Resource.Success -> _showNextScreen.postValue(true)
@@ -71,14 +76,12 @@ class OnboardingViewModel(
     val maleSelectedLv: LiveData<Boolean> = _maleSelectedLv
     private val _femaleSelectedLv = MutableLiveData(false)
     val femaleSelectedLv: LiveData<Boolean> = _femaleSelectedLv
-    private val gender = MutableLiveData<UserRepository.Gender>()
-    private val handedness = MutableLiveData<UserRepository.Handedness>()
 
     fun maleSelected() {
         _maleSelectedLv.value = !(_maleSelectedLv.value ?: false)
         _femaleSelectedLv.value = false
         if (_maleSelectedLv.value == true) {
-            gender.value = UserRepository.Gender.MALE
+            _gender.value = UserData.Gender.MALE
         }
     }
 
@@ -86,7 +89,7 @@ class OnboardingViewModel(
         _femaleSelectedLv.value = !(_femaleSelectedLv.value ?: false)
         _maleSelectedLv.value = false
         if (_femaleSelectedLv.value == true) {
-            gender.value = UserRepository.Gender.FEMALE
+            _gender.value = UserData.Gender.FEMALE
         }
     }
 
@@ -100,7 +103,7 @@ class OnboardingViewModel(
         _leftSelectedLv.value = !(_leftSelectedLv.value ?: false)
         _rightSelectedLv.value = false
         if (_leftSelectedLv.value == true) {
-            handedness.value = UserRepository.Handedness.LEFT
+            handedness.value = UserData.Handedness.LEFT
         }
     }
 
@@ -108,7 +111,7 @@ class OnboardingViewModel(
         _rightSelectedLv.value = !(_rightSelectedLv.value ?: false)
         _leftSelectedLv.value = false
         if (_rightSelectedLv.value == true) {
-            handedness.value = UserRepository.Handedness.RIGHT
+            handedness.value = UserData.Handedness.RIGHT
         }
     }
 }

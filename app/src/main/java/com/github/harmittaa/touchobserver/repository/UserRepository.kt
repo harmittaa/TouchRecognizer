@@ -1,5 +1,6 @@
 package com.github.harmittaa.touchobserver.repository
 
+import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.remote.AuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import timber.log.Timber
@@ -18,7 +19,7 @@ class UserRepository(
 
     fun userReady() = auth.isFirebaseUserAvailable()
 
-    suspend fun instantiateData(gender: Gender, handedness: Handedness): Resource {
+    suspend fun instantiateData(gender: UserData.Gender, handedness: UserData.Handedness): Resource {
         val id = auth.userId ?: return Resource.Failure("Anonymous user ID not found")
         val dbRefToUser = firebaseDatabase.reference.child("data").child(id)
         return try {
@@ -31,8 +32,4 @@ class UserRepository(
             Resource.Failure(reason = e.localizedMessage ?: "Unknown error")
         }
     }
-
-    enum class Gender { MALE, FEMALE }
-    enum class Handedness { LEFT, RIGHT }
-    data class UserData(val gender: Gender, val handedness: Handedness)
 }

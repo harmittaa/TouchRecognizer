@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TouchObserver</string>
-    <string name="consent_text">This application gathers your touch data while you play the following game. The data is anonymous and only used for research purposes. Data is not gathered outside of this application. Please click below to consent. Contact developers to delete your data.</string>
+    <string name="consent_text">This application gathers your touch data while you play the following game. The data is anonymous and only used for research purposes. Data is not gathered outside of this application. Please click below to consent.</string>
     <string name="agree_and_continue">Continue</string>
     <string name="app_explanation">This application gathers touch data for reaserch purposes. The information is anonymous and used for research purposes.</string>
     <string name="app_title">Swipe Profiler</string>
