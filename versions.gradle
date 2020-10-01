@@ -22,6 +22,7 @@ versions.spinkit = "1.4.0"
 versions.datastore = "1.0.0-alpha01"
 versions.viewpager = "1.0.0"
 versions.material = "1.2.1"
+versions.lottie = "3.4.2"
 
 
 
@@ -67,6 +68,10 @@ deps.kotlinx_coroutines = kotlinx_coroutines
 def spinkit = [:]
 spinkit.spinkit                 = "com.github.ybq:Android-SpinKit:$versions.spinkit"
 deps.spinkit = spinkit
+
+def lottie = [:]
+lottie.lottie                   = "com.airbnb.android:lottie:$versions.lottie"
+deps.lottie = lottie
 
 ext.deps = deps
 

@@ -18,7 +18,7 @@ class OnboardingViewModel(
     val initResult: LiveData<Resource.Failure> = _initResult
     private val _showNextScreen = MutableLiveData(false)
     val showNextScreen: LiveData<Boolean> = _showNextScreen
-    private val _canSkipLogin = MutableLiveData(false)
+    private val _canSkipLogin = MutableLiveData<Boolean>()
     val canSkipLogin: LiveData<Boolean> = _canSkipLogin
 
     private val _onContinueInvoked = MutableLiveData<Unit>()

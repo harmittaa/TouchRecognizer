@@ -14,10 +14,15 @@ import com.github.harmittaa.touchobserver.databinding.ScreenOnboardingBinding
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingFirstScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingFourthScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingSecondScreen
+import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingSplashScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingThirdScreen
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-private const val ONBOARDING_PAGE_COUNT = 4
+private const val ONBOARDING_PAGE_COUNT = 5
 
 class OnboardingFragment : Fragment() {
     private lateinit var binding: ScreenOnboardingBinding
@@ -49,8 +54,15 @@ class OnboardingFragment : Fragment() {
 
     private fun bindViewModel() {
         viewModel.canSkipLogin.observe(viewLifecycleOwner) { resource ->
-            if (resource) {
-                navigateOnwards()
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(2000)
+                if (resource) {
+                    navigateOnwards()
+                    return@launch
+                }
+                if (binding.pager.currentItem == 0) {
+                    showNextPagerScreen()
+                }
             }
         }
 
@@ -66,13 +78,17 @@ class OnboardingFragment : Fragment() {
         }
 
         viewModel.onContinueInvoked.observe(viewLifecycleOwner) {
-            if (binding.pager.currentItem == 3) {
+            if (binding.pager.currentItem == ONBOARDING_PAGE_COUNT - 1) {
                 viewModel.onConsentGiven()
             } else {
-                binding.pager.apply {
-                    setCurrentItem(currentItem + 1, true)
-                }
+                showNextPagerScreen()
             }
+        }
+    }
+
+    private fun showNextPagerScreen() {
+        binding.pager.apply {
+            setCurrentItem(currentItem + 1, true)
         }
     }
 
@@ -87,10 +103,11 @@ class OnboardingFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> OnboardingFirstScreen()
-                1 -> OnboardingSecondScreen()
-                2 -> OnboardingThirdScreen()
-                3 -> OnboardingFourthScreen()
+                0 -> OnboardingSplashScreen()
+                1 -> OnboardingFirstScreen()
+                2 -> OnboardingSecondScreen()
+                3 -> OnboardingThirdScreen()
+                4 -> OnboardingFourthScreen()
                 else -> {
                     OnboardingFirstScreen()
                 }

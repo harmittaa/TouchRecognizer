@@ -8,9 +8,23 @@ import androidx.fragment.app.Fragment
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFirstBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFourthBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSecondBinding
+import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSplashBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingThirdBinding
 import com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
+class OnboardingSplashScreen : Fragment() {
+    private lateinit var binding: FragmentOnboardingSplashBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentOnboardingSplashBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+}
 
 class OnboardingFirstScreen : Fragment() {
     private lateinit var binding: FragmentOnboardingFirstBinding

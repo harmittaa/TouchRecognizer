@@ -87,5 +87,7 @@ dependencies {
 
     implementation deps.spinkit.spinkit
 
+    implementation deps.lottie.lottie
+
     kapt "com.android.databinding:compiler:4.0.1"
 }
