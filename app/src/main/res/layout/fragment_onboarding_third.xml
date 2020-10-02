@@ -23,7 +23,7 @@
             android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
             android:contentDescription="@string/woman_using_phone"
-            android:scaleType="fitEnd"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@id/centerGuideHorizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
