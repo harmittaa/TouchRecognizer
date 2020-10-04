@@ -1,6 +1,7 @@
 package com.github.harmittaa.touchobserver.screens.onboarding
 
 import android.content.Context
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -88,6 +89,12 @@ class OnboardingFragment : Fragment() {
 
     private fun showNextPagerScreen() {
         binding.pager.apply {
+            if (currentItem % 2 == 0) {
+                (binding.rootBackground.background as TransitionDrawable).startTransition(250)
+            } else {
+                (binding.rootBackground.background as TransitionDrawable).reverseTransition(250)
+            }
+
             setCurrentItem(currentItem + 1, true)
         }
     }

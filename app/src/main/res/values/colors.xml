@@ -10,4 +10,6 @@
     <color name="orange">#FFDDB0</color>
     <color name="lighter_green">#CEE4D0</color>
     <color name="white_snow">#FBFCFE</color>
+    <color name="darker_green">#8AA69E</color>
+    <color name="less_darker_green">#9EBFB6</color>
 </resources>

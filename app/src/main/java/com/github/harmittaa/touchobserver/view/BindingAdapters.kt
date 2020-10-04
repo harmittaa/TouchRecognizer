@@ -12,3 +12,8 @@ fun showHide(view: View, show: Boolean) {
 fun setSelected(view: View, selected: Boolean) {
     view.isSelected = selected
 }
+
+@BindingAdapter("clipToOutline")
+fun clip(view: View, selected: Boolean) {
+    view.clipToOutline = selected
+}

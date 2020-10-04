@@ -15,4 +15,6 @@
     <string name="continue_txt">Continue</string>
     <string name="handedness">Handedness</string>
     <string name="last_step">Last step!</string>
+    <string name="next">next</string>
+    <string name="accept">Accept</string>
 </resources>

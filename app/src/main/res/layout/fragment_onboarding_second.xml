@@ -13,8 +13,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@color/orange">
+        android:animateLayoutChanges="true">
 
         <ImageView
             android:id="@+id/genderImage"
@@ -25,7 +24,6 @@
             android:contentDescription="@string/woman_using_phone"
             app:layout_constraintBottom_toTopOf="@id/centerGuide"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/man_thumb_bg" />
@@ -34,13 +32,12 @@
             android:id="@+id/genderImageFemale"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
             android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
             android:contentDescription="@string/woman_using_phone"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/centerGuide"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/woman_thumb_bg" />
@@ -120,7 +117,7 @@
             app:isSelected="@{viewModel.femaleSelectedLv || viewModel.maleSelectedLv}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/centerGuideHorizontal" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/centerGuideHorizontal"

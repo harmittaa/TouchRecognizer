@@ -13,8 +13,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@color/white_snow">
+        android:animateLayoutChanges="true">
 
         <ImageView
             android:id="@+id/imageView"
@@ -63,7 +62,7 @@
             android:background="@drawable/button_twostate_green_color"
             android:elevation="0dp"
             android:enabled="@{!viewModel.showLoading}"
-            android:text="@string/continue_txt"
+            android:text="@string/accept"
             android:textColor="@color/white"
             app:isSelected="@{!viewModel.showLoading}"
             app:layout_constraintBottom_toBottomOf="parent"
