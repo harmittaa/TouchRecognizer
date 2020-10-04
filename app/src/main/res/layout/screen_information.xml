@@ -142,14 +142,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/infoDataContactExplanation" />
 
-            <View
-                android:id="@+id/infoSpacerThird"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_margin="@dimen/margin_24"
-                android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/infoDataContactAddress" />
-
             <Button
                 android:id="@+id/infoBackButton"
                 android:layout_width="wrap_content"
@@ -159,7 +151,7 @@
                 android:text="@string/go_back"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/infoSpacerThird" />
+                app:layout_constraintTop_toBottomOf="@id/infoDataContactAddress" />
 
             <View
                 android:id="@+id/infoSpacerFourth"
@@ -168,7 +160,6 @@
                 android:layout_margin="@dimen/margin_24"
                 android:background="@color/gray"
                 app:layout_constraintTop_toBottomOf="@id/infoBackButton" />
-
 
             <TextView
                 android:id="@+id/infoAppVersion"
