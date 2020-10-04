@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/infoAllDataTitle"
+                style="@style/Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_24"
+                android:text="@string/stored_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/infoAllDataExplanation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_24"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:text="@string/the_following_data_is_stored"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoAllDataTitle" />
+
+            <TextView
+                android:id="@+id/infoGenderAndHandedness"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_24"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:text="@string/indicated_gender_and_handedness"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoAllDataExplanation" />
+
+            <TextView
+                android:id="@+id/infoTouchPoints"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_24"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:text="@string/touch_points_explanation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoGenderAndHandedness" />
+
+            <View
+                android:id="@+id/infoSpacer"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/infoTouchPoints" />
+
+            <TextView
+                android:id="@+id/infoDataRequestTitle"
+                style="@style/Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_24"
+                android:text="@string/request_data_removal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoSpacer" />
+
+            <TextView
+                android:id="@+id/infoDataExplanation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_24"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:text="@string/click_the_button_below_to_request_the_removal_of_data_related_to_the_current_usage_session_identifier_please_note_that_as_data_is_not_identifiable_you_will_not_receive_a_notification_upon_data_removal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoDataRequestTitle" />
+
+            <Button
+                android:id="@+id/dataRemovalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@drawable/button_twostate_green_color"
+                android:backgroundTint="@color/darker_green"
+                android:padding="8dp"
+                android:text="@string/request_removal"
+                app:isSelected="@{true}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/infoDataExplanation" />
+
+            <View
+                android:id="@+id/infoSpacerSecond"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/dataRemovalButton" />
+
+            <TextView
+                android:id="@+id/infoDataContactTitle"
+                style="@style/Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_24"
+                android:text="@string/contact"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoSpacerSecond" />
+
+            <TextView
+                android:id="@+id/infoDataContactExplanation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_24"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:text="@string/the_developer_can_be_contacted_at"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoDataContactTitle" />
+
+            <TextView
+                android:id="@+id/infoDataContactAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_24"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:text="@string/matti_maki_kihnia_aalto_fi"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoDataContactExplanation" />
+
+            <View
+                android:id="@+id/infoSpacerThird"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/infoDataContactAddress" />
+
+            <Button
+                android:id="@+id/infoBackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@drawable/main_button_background_selection"
+                android:text="@string/go_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoSpacerThird" />
+
+            <View
+                android:id="@+id/infoSpacerFourth"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/infoBackButton" />
+
+
+            <TextView
+                android:id="@+id/infoAppVersion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_24"
+                android:layout_marginVertical="@dimen/margin_16"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoSpacerFourth"
+                tools:text="App version: 1.0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

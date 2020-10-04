@@ -5,7 +5,6 @@
     <string name="app_explanation">This application gathers your touch data for research purposes while you play the following game. The target of the research is to analyse touch interaction data, in order to establish whether the data can be applied to identify generalised properties which differentiate a certain group of users from other groups. All data is anonymous.</string>
     <string name="app_title">Swipe Profiler</string>
     <string name="woman_using_phone">woman using phone</string>
-    <string name="information">Information</string>
     <string name="gender_description">For data labelling purposes, please indicate your gender</string>
     <string name="handedness_description">For data labelling purposes, please indicate your primary handedness</string>
     <string name="male">Male</string>
@@ -17,4 +16,16 @@
     <string name="last_step">Last step!</string>
     <string name="next">next</string>
     <string name="accept">Accept</string>
+    <string name="request_data_removal">Request data removal</string>
+    <string name="click_the_button_below_to_request_the_removal_of_data_related_to_the_current_usage_session_identifier_please_note_that_as_data_is_not_identifiable_you_will_not_receive_a_notification_upon_data_removal">Click the button below to request the removal of data related to the current usage session identifier. Please note that as data is not identifiable, you will not receive a notification upon data removal.</string>
+    <string name="stored_data">Stored data</string>
+    <string name="the_following_data_is_stored">The following data is stored</string>
+    <string name="indicated_gender_and_handedness">Indicated Gender and handedness</string>
+    <string name="touch_points_explanation">Touch points: X and Y positions, timestamp, velocity and touch size estimation.</string>
+    <string name="contact">Contact</string>
+    <string name="the_developer_can_be_contacted_at">The developer can be contacted at</string>
+    <string name="request_removal">Request removal</string>
+    <string name="matti_maki_kihnia_aalto_fi">matti.maki-kihnia@aalto.fi</string>
+    <string name="information">Information</string>
+    <string name="go_back">Go back</string>
 </resources>

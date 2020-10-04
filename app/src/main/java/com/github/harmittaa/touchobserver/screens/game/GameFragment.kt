@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.github.harmittaa.touchobserver.R
 import com.github.harmittaa.touchobserver.activity.MainActivity
 import com.github.harmittaa.touchobserver.databinding.ScreenGameBinding
 import com.github.harmittaa.touchobserver.view.TouchWebView
@@ -44,6 +46,14 @@ class GameFragment : Fragment(), TouchWebView.Listener {
             binding.gameView.loadUrl(assetsPath + Locale.getDefault().language)
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.informationButton.setOnClickListener {
+            this@GameFragment.view?.findNavController()
+                ?.navigate(R.id.action_gameFragment_to_informationFragment)
+        }
     }
 
     override fun onResume() {
