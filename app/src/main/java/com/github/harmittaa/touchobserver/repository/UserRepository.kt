@@ -3,7 +3,6 @@ package com.github.harmittaa.touchobserver.repository
 import com.github.harmittaa.touchobserver.model.DataRemoval
 import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.remote.AuthProvider
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.database.FirebaseDatabase
 import timber.log.Timber
 
@@ -33,8 +32,6 @@ class UserRepository(
             localDataStore.storeConsent()
             Resource.Success
         } catch (e: Exception) {
-            FirebaseCrashlytics.getInstance()
-                .recordException(TouchObserverThrowable("Exception in instantiateData", e))
             Timber.d("Something went wrong $e")
             Resource.Failure(reason = e.localizedMessage ?: "Unknown error")
         }
@@ -47,8 +44,6 @@ class UserRepository(
             dbRefToUser.child("Removal").setValue(DataRemoval())
             Resource.Success
         } catch (e: Exception) {
-            FirebaseCrashlytics.getInstance()
-                .recordException(TouchObserverThrowable("Exception in onDataRemovalClicked", e))
             Timber.d("Something went wrong $e")
             Resource.Failure(reason = e.localizedMessage ?: "Unknown error")
         }

@@ -1,8 +1,12 @@
 ext.deps = [:]
+ext.versions = [:]
 def deps = [:]
 
 def versions = [:]
+versions.gradle = "4.0.2"
 versions.nav = "2.3.0"
+versions.google_services = "4.3.4"
+versions.spotless = "5.1.0"
 versions.koin = '2.1.6'
 versions.lifecycle = "2.2.0"
 versions.kotlin_coroutines_play = "1.1.1"
@@ -23,8 +27,8 @@ versions.datastore = "1.0.0-alpha01"
 versions.viewpager = "1.0.0"
 versions.material = "1.2.1"
 versions.lottie = "3.4.2"
-versions.crashlytics_ktx = "17.2.2"
-
+versions.license_tools = "1.2.1"
+ext.versions = versions
 
 
 def androidx = [:]
@@ -74,9 +78,9 @@ def lottie = [:]
 lottie.lottie                   = "com.airbnb.android:lottie:$versions.lottie"
 deps.lottie = lottie
 
-def crashlytics = [:]
-crashlytics.crashlytics_ktx     = "com.google.firebase:firebase-crashlytics-ktx:$versions.crashlytics_ktx"
-deps.crashlytics = crashlytics
+def license = [:]
+license.licenseTools            = "com.cookpad.android.plugin.license-tools:$versions.license_tools"
+deps.license = license
 
 ext.deps = deps
 

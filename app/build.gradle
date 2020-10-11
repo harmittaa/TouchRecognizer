@@ -4,8 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "androidx.navigation.safeargs.kotlin"
-apply plugin: 'com.google.firebase.crashlytics'
 apply from: "$project.rootDir/spotless.gradle"
+apply plugin: "com.cookpad.android.plugin.license-tools"
 
 
 android {
@@ -49,11 +49,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 
     implementation deps.androidx.constraintlayout
@@ -89,7 +89,5 @@ dependencies {
 
     implementation deps.lottie.lottie
 
-    implementation deps.crashlytics.crashlytics_ktx
-
-    kapt "com.android.databinding:compiler:4.0.1"
+    kapt "com.android.databinding:compiler:$versions.databinding_compiler"
 }
