@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.github.harmittaa.touchobserver.screens.onboarding.OnboardingFragment"
+        android:name="com.github.harmittaa.touchobserver.screens.onboarding.RootOnboardingFragment"
         android:label="OnboardingFragment">
         <action
             android:id="@+id/action_onboardingFragment_to_gameFragment"

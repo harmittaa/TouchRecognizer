@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingConsentBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFirstBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFourthBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSecondBinding
@@ -12,6 +13,7 @@ import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSplashBi
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingThirdBinding
 import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel
+import com.github.harmittaa.touchobserver.screens.onboarding.ScreenType
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class OnboardingSplashScreen : Fragment() {
@@ -27,7 +29,25 @@ class OnboardingSplashScreen : Fragment() {
     }
 }
 
-class OnboardingFirstScreen : Fragment() {
+class OnboardingConsentScreen : Fragment() {
+    private lateinit var binding: FragmentOnboardingConsentBinding
+    private val viewModel: OnboardingViewModel by sharedViewModel()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentOnboardingConsentBinding.inflate(inflater, container, false).apply {
+            this.consentAgreementButton.setOnClickListener {
+                viewModel.onContinueButtonClicked(ScreenType.CONSENT)
+            }
+        }
+        return binding.root
+    }
+}
+
+class OnboardingGeneralScreen : Fragment() {
     private lateinit var binding: FragmentOnboardingFirstBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
@@ -44,14 +64,13 @@ class OnboardingFirstScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.continueButton.setOnClickListener {
             if (it.isEnabled) {
-                viewModel.onContinueButtonClicked()
+                viewModel.onContinueButtonClicked(ScreenType.GENERAL)
             }
         }
     }
 }
 
-private const val genderAnimation = 500
-class OnboardingSecondScreen : Fragment() {
+class OnboardingGenderScreen : Fragment() {
     private lateinit var binding: FragmentOnboardingSecondBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
@@ -62,8 +81,8 @@ class OnboardingSecondScreen : Fragment() {
     ): View {
         binding = FragmentOnboardingSecondBinding.inflate(inflater, container, false)
         binding.apply {
-            this.lifecycleOwner = this@OnboardingSecondScreen.viewLifecycleOwner
-            this.viewModel = this@OnboardingSecondScreen.viewModel
+            this.lifecycleOwner = this@OnboardingGenderScreen.viewLifecycleOwner
+            this.viewModel = this@OnboardingGenderScreen.viewModel
         }
         return binding.root
     }
@@ -79,7 +98,7 @@ class OnboardingSecondScreen : Fragment() {
         }
         binding.continueButton.setOnClickListener {
             if (it.isEnabled) {
-                viewModel.onContinueButtonClicked()
+                viewModel.onContinueButtonClicked(ScreenType.GENDER)
             }
         }
 
@@ -99,7 +118,7 @@ class OnboardingSecondScreen : Fragment() {
     }
 }
 
-class OnboardingThirdScreen : Fragment() {
+class OnboardingHandednessScreen : Fragment() {
     private lateinit var binding: FragmentOnboardingThirdBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
@@ -110,8 +129,8 @@ class OnboardingThirdScreen : Fragment() {
     ): View {
         binding = FragmentOnboardingThirdBinding.inflate(inflater, container, false)
         binding.apply {
-            this.lifecycleOwner = this@OnboardingThirdScreen.viewLifecycleOwner
-            this.viewModel = this@OnboardingThirdScreen.viewModel
+            this.lifecycleOwner = this@OnboardingHandednessScreen.viewLifecycleOwner
+            this.viewModel = this@OnboardingHandednessScreen.viewModel
         }
         return binding.root
     }
@@ -127,13 +146,13 @@ class OnboardingThirdScreen : Fragment() {
         }
         binding.continueButton.setOnClickListener {
             if (it.isEnabled) {
-                viewModel.onContinueButtonClicked()
+                viewModel.onContinueButtonClicked(ScreenType.HANDEDNESS)
             }
         }
     }
 }
 
-class OnboardingFourthScreen : Fragment() {
+class OnboardingApprovalScreen : Fragment() {
     private lateinit var binding: FragmentOnboardingFourthBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
@@ -144,8 +163,8 @@ class OnboardingFourthScreen : Fragment() {
     ): View {
         binding = FragmentOnboardingFourthBinding.inflate(inflater, container, false)
         binding.apply {
-            this.lifecycleOwner = this@OnboardingFourthScreen.viewLifecycleOwner
-            this.viewModel = this@OnboardingFourthScreen.viewModel
+            this.lifecycleOwner = this@OnboardingApprovalScreen.viewLifecycleOwner
+            this.viewModel = this@OnboardingApprovalScreen.viewModel
         }
         return binding.root
     }
@@ -155,7 +174,7 @@ class OnboardingFourthScreen : Fragment() {
 
         binding.continueButton.setOnClickListener {
             if (it.isEnabled) {
-                viewModel.onContinueButtonClicked()
+                viewModel.onContinueButtonClicked(ScreenType.APPROVAL)
             }
         }
     }

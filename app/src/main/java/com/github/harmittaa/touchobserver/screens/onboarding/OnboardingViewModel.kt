@@ -22,8 +22,8 @@ class OnboardingViewModel(
     private val _canSkipLogin = MutableLiveData<Boolean>()
     val canSkipLogin: LiveData<Boolean> = _canSkipLogin
 
-    private val _onContinueInvoked = MutableLiveData<Unit>()
-    val onContinueInvoked: LiveData<Unit> = _onContinueInvoked
+    private val _onContinueInvoked = MutableLiveData<ScreenType>()
+    val onContinueInvoked: LiveData<ScreenType> = _onContinueInvoked
 
     private val _gender = MutableLiveData(UserData.Gender.MALE)
     val gender: LiveData<UserData.Gender> = _gender
@@ -37,8 +37,8 @@ class OnboardingViewModel(
         }
     }
 
-    fun onContinueButtonClicked() {
-        _onContinueInvoked.value = Unit
+    fun onContinueButtonClicked(type: ScreenType) {
+        _onContinueInvoked.value = type
     }
 
     fun onConsentGiven() {

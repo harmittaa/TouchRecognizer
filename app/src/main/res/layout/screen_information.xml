@@ -45,24 +45,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/infoAllDataExplanation" />
 
-            <TextView
-                android:id="@+id/infoTouchPoints"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_24"
-                android:layout_marginVertical="@dimen/margin_16"
-                android:text="@string/touch_points_explanation"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/infoGenderAndHandedness" />
-
             <View
                 android:id="@+id/infoSpacer"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_margin="@dimen/margin_24"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/infoTouchPoints" />
+                app:layout_constraintTop_toBottomOf="@id/infoGenderAndHandedness" />
 
             <TextView
                 android:id="@+id/infoDataRequestTitle"
@@ -92,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_24"
                 android:background="@drawable/button_twostate_green_color"
-                android:backgroundTint="@color/darker_green"
+                android:backgroundTint="@color/colorAccent"
                 android:padding="8dp"
                 android:text="@string/request_removal"
                 app:isSelected="@{true}"
@@ -149,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_24"
-                android:background="@drawable/main_button_background_selection"
+                android:background="@drawable/main_button_background"
                 android:text="@string/go_back"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +186,7 @@
                     style="@style/Description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginHorizontal="@dimen/margin_16"
                     android:text="@string/game_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -209,7 +198,7 @@
                     style="@style/Description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginHorizontal="@dimen/margin_16"
                     android:layout_marginTop="@dimen/margin_8"
                     android:autoLink="web"
                     android:text="@string/https_github_com_gabrielecirulli_2048"
@@ -234,7 +223,7 @@
                     style="@style/Description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginHorizontal="@dimen/margin_16"
                     android:layout_marginTop="@dimen/margin_8"
                     android:autoLink="web"
                     android:text="@string/game_url"
@@ -247,7 +236,7 @@
                     style="@style/Description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginHorizontal="@dimen/margin_16"
                     android:layout_marginTop="@dimen/margin_8"
                     android:text="@string/mit_license"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -261,8 +250,9 @@
                 android:id="@+id/infoLicensesButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_24"
-                android:background="@drawable/main_button_background_selection"
+                android:layout_margin="@dimen/margin_16"
+                android:background="@drawable/main_button_background"
+                android:padding="@dimen/margin_4"
                 android:text="@string/open_source_licenses"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

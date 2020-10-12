@@ -12,20 +12,25 @@ import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.github.harmittaa.touchobserver.activity.MainActivity
 import com.github.harmittaa.touchobserver.databinding.ScreenOnboardingBinding
-import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingFirstScreen
-import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingFourthScreen
-import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingSecondScreen
+import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingApprovalScreen
+import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingConsentScreen
+import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingGenderScreen
+import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingGeneralScreen
+import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingHandednessScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingSplashScreen
-import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingThirdScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-private const val ONBOARDING_PAGE_COUNT = 5
+private const val ONBOARDING_PAGE_COUNT = 6
 
-class OnboardingFragment : Fragment() {
+enum class ScreenType {
+    SPLASH, CONSENT, GENERAL, GENDER, HANDEDNESS, APPROVAL
+}
+
+class RootOnboardingFragment : Fragment() {
     private lateinit var binding: ScreenOnboardingBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
@@ -56,7 +61,7 @@ class OnboardingFragment : Fragment() {
     private fun bindViewModel() {
         viewModel.canSkipLogin.observe(viewLifecycleOwner) { resource ->
             CoroutineScope(Dispatchers.Main).launch {
-                delay(2300)
+                delay(2000)
                 if (resource) {
                     navigateOnwards()
                     return@launch
@@ -78,11 +83,10 @@ class OnboardingFragment : Fragment() {
             }
         }
 
-        viewModel.onContinueInvoked.observe(viewLifecycleOwner) {
-            if (binding.pager.currentItem == ONBOARDING_PAGE_COUNT - 1) {
-                viewModel.onConsentGiven()
-            } else {
-                showNextPagerScreen()
+        viewModel.onContinueInvoked.observe(viewLifecycleOwner) { type ->
+            when (type) {
+                ScreenType.APPROVAL -> viewModel.onConsentGiven()
+                else -> showNextPagerScreen()
             }
         }
     }
@@ -101,7 +105,7 @@ class OnboardingFragment : Fragment() {
 
     private fun navigateOnwards() {
         view?.findNavController()
-            ?.navigate(OnboardingFragmentDirections.actionOnboardingFragmentToGameFragment())
+            ?.navigate(RootOnboardingFragmentDirections.actionOnboardingFragmentToGameFragment())
     }
 
     class OnboardingPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -111,12 +115,13 @@ class OnboardingFragment : Fragment() {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> OnboardingSplashScreen()
-                1 -> OnboardingFirstScreen()
-                2 -> OnboardingSecondScreen()
-                3 -> OnboardingThirdScreen()
-                4 -> OnboardingFourthScreen()
+                1 -> OnboardingConsentScreen()
+                2 -> OnboardingGeneralScreen()
+                3 -> OnboardingGenderScreen()
+                4 -> OnboardingHandednessScreen()
+                5 -> OnboardingApprovalScreen()
                 else -> {
-                    OnboardingFirstScreen()
+                    OnboardingGeneralScreen()
                 }
             }
         }
