@@ -29,5 +29,13 @@
     <fragment
         android:id="@+id/informationFragment"
         android:name="com.github.harmittaa.touchobserver.screens.information.InformationFragment"
-        android:label="InformationFragment" />
+        android:label="InformationFragment" >
+        <action
+            android:id="@+id/action_informationFragment_to_licenseFragment"
+            app:destination="@id/licenseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/licenseFragment"
+        android:name="com.github.harmittaa.touchobserver.screens.licenses.LicenseFragment"
+        android:label="LicenseFragment" />
 </navigation>

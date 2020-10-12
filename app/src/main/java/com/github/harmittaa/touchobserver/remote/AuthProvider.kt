@@ -1,7 +1,6 @@
 package com.github.harmittaa.touchobserver.remote
 
 import com.github.harmittaa.touchobserver.repository.Resource
-import com.github.harmittaa.touchobserver.repository.TouchObserverThrowable
 import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 import kotlinx.coroutines.tasks.await

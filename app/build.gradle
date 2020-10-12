@@ -6,6 +6,9 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply from: "$project.rootDir/spotless.gradle"
 apply plugin: "com.cookpad.android.plugin.license-tools"
+apply plugin: "kotlinx-serialization"
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
 
 
 android {
@@ -88,6 +91,10 @@ dependencies {
     implementation deps.spinkit.spinkit
 
     implementation deps.lottie.lottie
+
+    implementation deps.serialization.serialization
+
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 
     kapt "com.android.databinding:compiler:$versions.databinding_compiler"
 }

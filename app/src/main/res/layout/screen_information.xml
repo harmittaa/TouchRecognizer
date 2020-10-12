@@ -176,6 +176,98 @@
                 app:layout_constraintTop_toBottomOf="@id/infoSpacerFourth"
                 tools:text="App version: 1.0.0" />
 
+            <View
+                android:id="@+id/infoSpacerFifth"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/infoAppVersion" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/infoGameLicenceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoSpacerFifth">
+
+                <TextView
+                    android:id="@+id/gameTitle"
+                    style="@style/Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:text="@string/game_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/originalGameUrl"
+                    style="@style/Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:autoLink="web"
+                    android:text="@string/https_github_com_gabrielecirulli_2048"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gameTitle" />
+
+                <TextView
+                    android:id="@+id/licenseTitle"
+                    style="@style/Title.Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/android_2048"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/originalGameUrl" />
+
+                <TextView
+                    android:id="@+id/licenseUrl"
+                    style="@style/Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:autoLink="web"
+                    android:text="@string/game_url"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/licenseTitle" />
+
+                <TextView
+                    android:id="@+id/fullLicence"
+                    style="@style/Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/mit_license"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/licenseUrl" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/infoLicensesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_24"
+                android:background="@drawable/main_button_background_selection"
+                android:text="@string/open_source_licenses"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoGameLicenceText" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

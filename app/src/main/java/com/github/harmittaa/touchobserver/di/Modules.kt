@@ -9,6 +9,7 @@ import com.github.harmittaa.touchobserver.repository.TouchRepository
 import com.github.harmittaa.touchobserver.repository.UserRepository
 import com.github.harmittaa.touchobserver.repository.getDataStore
 import com.github.harmittaa.touchobserver.screens.information.InformationViewModel
+import com.github.harmittaa.touchobserver.screens.licenses.LicenseViewModel
 import com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -18,6 +19,7 @@ val viewModelModule = module {
     factory { MainActivityViewModel(repository = get(), gestureProcessor = get()) }
     factory { OnboardingViewModel(userRepository = get()) }
     factory { InformationViewModel(userRepository = get()) }
+    factory { LicenseViewModel() }
 }
 
 val firebaseModule = module {

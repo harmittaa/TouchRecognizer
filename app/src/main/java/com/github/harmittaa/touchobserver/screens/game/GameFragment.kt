@@ -34,7 +34,7 @@ class GameFragment : Fragment(), TouchWebView.Listener {
         savedInstanceState: Bundle?
     ): View? {
         binding = ScreenGameBinding.inflate(inflater, container, false)
-        val settings: WebSettings = binding.gameView.getSettings()
+        val settings: WebSettings = binding.gameView.settings
         settings.javaScriptEnabled = true
         settings.domStorageEnabled = true
         settings.databaseEnabled = true

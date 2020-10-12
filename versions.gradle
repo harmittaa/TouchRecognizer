@@ -28,6 +28,7 @@ versions.viewpager = "1.0.0"
 versions.material = "1.2.1"
 versions.lottie = "3.4.2"
 versions.license_tools = "1.2.1"
+versions.serialization = "1.0.0-RC"
 ext.versions = versions
 
 
@@ -81,6 +82,10 @@ deps.lottie = lottie
 def license = [:]
 license.licenseTools            = "com.cookpad.android.plugin.license-tools:$versions.license_tools"
 deps.license = license
+
+def serialization = [:]
+serialization.serialization     = "org.jetbrains.kotlinx:kotlinx-serialization-core:$versions.serialization"
+deps.serialization = serialization
 
 ext.deps = deps
 

@@ -22,6 +22,8 @@ buildscript {
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.nav"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotless"
         classpath "gradle.plugin.com.cookpad.android.plugin:plugin:$versions.license_tools"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$versions.kotlin"
+        classpath 'com.google.android.gms:oss-licenses-plugin:0.10.2'
     }
 
 }

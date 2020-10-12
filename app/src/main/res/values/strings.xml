@@ -28,4 +28,11 @@
     <string name="matti_maki_kihnia_aalto_fi">matti.maki-kihnia@aalto.fi</string>
     <string name="information">Information</string>
     <string name="go_back">Go back</string>
+    <string name="open_source_licenses">Open source licenses</string>
+    <string name="open_source_libraries_used_in_this_project">Open source libraries used in this project</string>
+    <string name="mit_license">The MIT License (MIT) Copyright (c) 2014 Paul Sarbinowski Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the Software), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+    <string name="android_2048">2048-android</string>
+    <string name="game_description">The 2048 game is an open source port of the original 2048 game created by Gabriele Cirulli. The original game can be found from the link below.</string>
+    <string name="game_url">https://github.com/uberspot/2048-android</string>
+    <string name="https_github_com_gabrielecirulli_2048">https://github.com/gabrielecirulli/2048</string>
 </resources>
