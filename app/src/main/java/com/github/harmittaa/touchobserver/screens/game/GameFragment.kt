@@ -1,13 +1,11 @@
 package com.github.harmittaa.touchobserver.screens.game
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebSettings
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.github.harmittaa.touchobserver.R
@@ -20,13 +18,6 @@ class GameFragment : Fragment(), TouchWebView.Listener {
     private lateinit var binding: ScreenGameBinding
     private val assetsPath = "file:///android_asset/2048/index.html?lang="
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as? MainActivity)?.let {
-            it.storeEvents = true
-        }
-    }
-
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,10 +25,11 @@ class GameFragment : Fragment(), TouchWebView.Listener {
         savedInstanceState: Bundle?
     ): View? {
         binding = ScreenGameBinding.inflate(inflater, container, false)
-        val settings: WebSettings = binding.gameView.settings
-        settings.javaScriptEnabled = true
-        settings.domStorageEnabled = true
-        settings.databaseEnabled = true
+        binding.gameView.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            databaseEnabled = true
+        }
 
         if (savedInstanceState != null) {
             binding.gameView.restoreState(savedInstanceState)
@@ -58,6 +50,9 @@ class GameFragment : Fragment(), TouchWebView.Listener {
 
     override fun onResume() {
         super.onResume()
+        (activity as? MainActivity)?.let {
+            it.storeEvents = true
+        }
         binding.gameView.loadUrl(assetsPath + Locale.getDefault().language)
     }
 

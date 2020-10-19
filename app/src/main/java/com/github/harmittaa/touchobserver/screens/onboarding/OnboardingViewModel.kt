@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.harmittaa.touchobserver.model.ScreenSpecifications
 import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.repository.Resource
 import com.github.harmittaa.touchobserver.repository.UserRepository
@@ -29,6 +30,9 @@ class OnboardingViewModel(
     val gender: LiveData<UserData.Gender> = _gender
     private val handedness = MutableLiveData<UserData.Handedness>()
 
+    var screenSpecs: ScreenSpecifications? = null
+    var appVersion: String = ""
+
     init {
         viewModelScope.launch {
             val consent = userRepository.hasGivenConsent()
@@ -47,8 +51,10 @@ class OnboardingViewModel(
             when (val signInResult = userRepository.attemptSignIn()) {
                 is Resource.Success -> {
                     instantiateUserData(
-                        gender.value ?: UserData.Gender.MALE,
-                        handedness.value ?: UserData.Handedness.RIGHT
+                        gender = gender.value ?: UserData.Gender.MALE,
+                        handedness = handedness.value ?: UserData.Handedness.RIGHT,
+                        screenSpecs = screenSpecs ?: ScreenSpecifications(0f, 0, 0),
+                        appVersion = appVersion
                     )
                 }
                 is Resource.Failure -> {
@@ -61,9 +67,11 @@ class OnboardingViewModel(
 
     private suspend fun instantiateUserData(
         gender: UserData.Gender,
-        handedness: UserData.Handedness
+        handedness: UserData.Handedness,
+        screenSpecs: ScreenSpecifications,
+        appVersion: String
     ) {
-        when (val result = userRepository.instantiateData(gender, handedness)) {
+        when (val result = userRepository.instantiateData(gender, handedness, screenSpecs, appVersion)) {
             is Resource.Success -> _showNextScreen.postValue(true)
             is Resource.Failure -> {
                 _initResult.postValue(result)

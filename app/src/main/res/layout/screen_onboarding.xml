@@ -14,17 +14,15 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/margin_24"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="72dp"
-
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="54dp"
             android:background="@drawable/rounded_rectangle"
             android:backgroundTint="@color/white_snow"
             android:elevation="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

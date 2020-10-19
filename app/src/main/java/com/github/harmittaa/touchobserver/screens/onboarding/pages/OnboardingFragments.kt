@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingConsentBinding
-import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFirstBinding
-import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingFourthBinding
-import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSecondBinding
 import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingSplashBinding
-import com.github.harmittaa.touchobserver.databinding.FragmentOnboardingThirdBinding
-import com.github.harmittaa.touchobserver.model.UserData
+import com.github.harmittaa.touchobserver.databinding.OnboardingContinueBinding
+import com.github.harmittaa.touchobserver.databinding.OnboardingGenderBinding
+import com.github.harmittaa.touchobserver.databinding.OnboardingHandednessBinding
 import com.github.harmittaa.touchobserver.screens.onboarding.OnboardingViewModel
 import com.github.harmittaa.touchobserver.screens.onboarding.ScreenType
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -47,31 +45,8 @@ class OnboardingConsentScreen : Fragment() {
     }
 }
 
-class OnboardingGeneralScreen : Fragment() {
-    private lateinit var binding: FragmentOnboardingFirstBinding
-    private val viewModel: OnboardingViewModel by sharedViewModel()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentOnboardingFirstBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.continueButton.setOnClickListener {
-            if (it.isEnabled) {
-                viewModel.onContinueButtonClicked(ScreenType.GENERAL)
-            }
-        }
-    }
-}
-
 class OnboardingGenderScreen : Fragment() {
-    private lateinit var binding: FragmentOnboardingSecondBinding
+    private lateinit var binding: OnboardingGenderBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
     override fun onCreateView(
@@ -79,7 +54,7 @@ class OnboardingGenderScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOnboardingSecondBinding.inflate(inflater, container, false)
+        binding = OnboardingGenderBinding.inflate(inflater, container, false)
         binding.apply {
             this.lifecycleOwner = this@OnboardingGenderScreen.viewLifecycleOwner
             this.viewModel = this@OnboardingGenderScreen.viewModel
@@ -92,9 +67,13 @@ class OnboardingGenderScreen : Fragment() {
 
         binding.maleButton.setOnClickListener {
             viewModel.maleSelected()
+            binding.genderImage.visibility = View.VISIBLE
+            binding.genderImageFemale.visibility = View.INVISIBLE
         }
         binding.femaleButton.setOnClickListener {
             viewModel.femaleSelected()
+            binding.genderImageFemale.visibility = View.VISIBLE
+            binding.genderImage.visibility = View.INVISIBLE
         }
         binding.continueButton.setOnClickListener {
             if (it.isEnabled) {
@@ -102,6 +81,7 @@ class OnboardingGenderScreen : Fragment() {
             }
         }
 
+/*
         viewModel.gender.observe(viewLifecycleOwner) { gender ->
             if (gender == null) return@observe
             when (gender) {
@@ -115,11 +95,12 @@ class OnboardingGenderScreen : Fragment() {
                 }
             }
         }
+*/
     }
 }
 
 class OnboardingHandednessScreen : Fragment() {
-    private lateinit var binding: FragmentOnboardingThirdBinding
+    private lateinit var binding: OnboardingHandednessBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
     override fun onCreateView(
@@ -127,7 +108,7 @@ class OnboardingHandednessScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOnboardingThirdBinding.inflate(inflater, container, false)
+        binding = OnboardingHandednessBinding.inflate(inflater, container, false)
         binding.apply {
             this.lifecycleOwner = this@OnboardingHandednessScreen.viewLifecycleOwner
             this.viewModel = this@OnboardingHandednessScreen.viewModel
@@ -153,7 +134,7 @@ class OnboardingHandednessScreen : Fragment() {
 }
 
 class OnboardingApprovalScreen : Fragment() {
-    private lateinit var binding: FragmentOnboardingFourthBinding
+    private lateinit var binding: OnboardingContinueBinding
     private val viewModel: OnboardingViewModel by sharedViewModel()
 
     override fun onCreateView(
@@ -161,7 +142,7 @@ class OnboardingApprovalScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOnboardingFourthBinding.inflate(inflater, container, false)
+        binding = OnboardingContinueBinding.inflate(inflater, container, false)
         binding.apply {
             this.lifecycleOwner = this@OnboardingApprovalScreen.viewLifecycleOwner
             this.viewModel = this@OnboardingApprovalScreen.viewModel

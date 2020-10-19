@@ -3,9 +3,9 @@ package com.github.harmittaa.touchobserver.view
 import android.view.View
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("visibleGone")
+@BindingAdapter("visibleInvisible")
 fun showHide(view: View, show: Boolean) {
-    view.visibility = if (show) View.VISIBLE else View.GONE
+    view.visibility = if (show) View.VISIBLE else View.INVISIBLE
 }
 
 @BindingAdapter("isSelected")

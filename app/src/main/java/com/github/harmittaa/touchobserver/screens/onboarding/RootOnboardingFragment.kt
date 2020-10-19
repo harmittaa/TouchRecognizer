@@ -1,6 +1,7 @@
 package com.github.harmittaa.touchobserver.screens.onboarding
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,10 +13,10 @@ import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.github.harmittaa.touchobserver.activity.MainActivity
 import com.github.harmittaa.touchobserver.databinding.ScreenOnboardingBinding
+import com.github.harmittaa.touchobserver.model.ScreenSpecifications
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingApprovalScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingConsentScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingGenderScreen
-import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingGeneralScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingHandednessScreen
 import com.github.harmittaa.touchobserver.screens.onboarding.pages.OnboardingSplashScreen
 import kotlinx.coroutines.CoroutineScope
@@ -23,11 +24,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import timber.log.Timber
 
-private const val ONBOARDING_PAGE_COUNT = 6
+private const val ONBOARDING_PAGE_COUNT = 5
 
 enum class ScreenType {
-    SPLASH, CONSENT, GENERAL, GENDER, HANDEDNESS, APPROVAL
+    SPLASH, CONSENT, GENDER, HANDEDNESS, APPROVAL
 }
 
 class RootOnboardingFragment : Fragment() {
@@ -59,15 +61,18 @@ class RootOnboardingFragment : Fragment() {
     }
 
     private fun bindViewModel() {
-        viewModel.canSkipLogin.observe(viewLifecycleOwner) { resource ->
+        viewModel.screenSpecs = getScreenSpecifications()
+        viewModel.appVersion = getAppVersion()
+
+        viewModel.canSkipLogin.observe(viewLifecycleOwner) { skipLogin ->
             CoroutineScope(Dispatchers.Main).launch {
                 delay(2000)
-                if (resource) {
+                if (skipLogin) {
                     navigateOnwards()
                     return@launch
                 }
                 if (binding.pager.currentItem == 0) {
-                    showNextPagerScreen()
+                    showNextPagerScreen(ScreenType.SPLASH)
                 }
             }
         }
@@ -86,20 +91,27 @@ class RootOnboardingFragment : Fragment() {
         viewModel.onContinueInvoked.observe(viewLifecycleOwner) { type ->
             when (type) {
                 ScreenType.APPROVAL -> viewModel.onConsentGiven()
-                else -> showNextPagerScreen()
+                else -> showNextPagerScreen(type)
             }
         }
     }
 
-    private fun showNextPagerScreen() {
+    private fun showNextPagerScreen(type: ScreenType) {
         binding.pager.apply {
-            if (currentItem % 2 == 0) {
+            if (currentItem % 2 != 0) {
                 (binding.rootBackground.background as TransitionDrawable).startTransition(250)
             } else {
                 (binding.rootBackground.background as TransitionDrawable).reverseTransition(250)
             }
 
-            setCurrentItem(currentItem + 1, true)
+            val nextItem = when (type) {
+                ScreenType.SPLASH -> 1
+                ScreenType.CONSENT -> 2
+                ScreenType.GENDER -> 3
+                ScreenType.HANDEDNESS -> 4
+                ScreenType.APPROVAL -> 1
+            }
+            setCurrentItem(nextItem, true)
         }
     }
 
@@ -108,7 +120,24 @@ class RootOnboardingFragment : Fragment() {
             ?.navigate(RootOnboardingFragmentDirections.actionOnboardingFragmentToGameFragment())
     }
 
-    class OnboardingPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+    private fun getScreenSpecifications(): ScreenSpecifications {
+        val metrics = requireContext().resources.displayMetrics
+        return ScreenSpecifications(metrics.density, metrics.heightPixels, metrics.widthPixels)
+    }
+
+    private fun getAppVersion(): String {
+        return try {
+            requireContext().packageManager.getPackageInfo(
+                requireContext().packageName,
+                0
+            ).versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            Timber.d("Couldn't get package name $e")
+            ""
+        }
+    }
+
+    inner class OnboardingPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
         override fun getItemCount(): Int = ONBOARDING_PAGE_COUNT
 
@@ -116,12 +145,11 @@ class RootOnboardingFragment : Fragment() {
             return when (position) {
                 0 -> OnboardingSplashScreen()
                 1 -> OnboardingConsentScreen()
-                2 -> OnboardingGeneralScreen()
-                3 -> OnboardingGenderScreen()
-                4 -> OnboardingHandednessScreen()
-                5 -> OnboardingApprovalScreen()
+                2 -> OnboardingGenderScreen()
+                3 -> OnboardingHandednessScreen()
+                4 -> OnboardingApprovalScreen()
                 else -> {
-                    OnboardingGeneralScreen()
+                    OnboardingConsentScreen()
                 }
             }
         }

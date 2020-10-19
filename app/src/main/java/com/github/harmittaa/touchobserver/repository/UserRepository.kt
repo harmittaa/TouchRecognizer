@@ -1,6 +1,7 @@
 package com.github.harmittaa.touchobserver.repository
 
 import com.github.harmittaa.touchobserver.model.DataRemoval
+import com.github.harmittaa.touchobserver.model.ScreenSpecifications
 import com.github.harmittaa.touchobserver.model.UserData
 import com.github.harmittaa.touchobserver.remote.AuthProvider
 import com.google.firebase.database.FirebaseDatabase
@@ -22,13 +23,17 @@ class UserRepository(
 
     suspend fun instantiateData(
         gender: UserData.Gender,
-        handedness: UserData.Handedness
+        handedness: UserData.Handedness,
+        screenSpecs: ScreenSpecifications,
+        appVersion: String
     ): Resource {
         val id = auth.userId ?: return Resource.Failure("Anonymous user ID not found")
         val dbRefToUser = firebaseDatabase.reference.child("data").child(id)
         return try {
             dbRefToUser.getSnapshotValue()
-            dbRefToUser.setValue(UserData(gender, handedness))
+            dbRefToUser.child("Version").setValue(appVersion)
+            dbRefToUser.child("Display").setValue(screenSpecs)
+            dbRefToUser.child("User").setValue(UserData(gender, handedness))
             localDataStore.storeConsent()
             Resource.Success
         } catch (e: Exception) {

@@ -254,9 +254,11 @@
                 android:background="@drawable/main_button_background"
                 android:padding="@dimen/margin_4"
                 android:text="@string/open_source_licenses"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/infoGameLicenceText" />
+                app:layout_constraintTop_toBottomOf="@id/infoGameLicenceText"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
