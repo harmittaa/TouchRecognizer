@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Swipe Analyser</string>
+    <string name="app_name">Swipe Observer</string>
     <string name="consent_text">Following this screen your previously indicated handedness and gender selections will be stored and touch event recording will start. Approval can be revoked at any time via the Information screen.</string>
     <string name="agree_and_continue">Continue</string>
     <string name="app_explanation">This application gathers your touch data for research purposes while you play the following game. The target of the research is to analyse touch interaction data, in order to establish whether the data can be applied to identify generalised properties which differentiate a certain group of users from other groups. All data is anonymous.</string>
